@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#=====================================================================
+
+===============================================================
 # Set the following variables as per your requirement
 #=====================================================================
 # Database Name to backup
@@ -75,4 +76,3 @@ mongoexport --db $MONGO_DATABASE --collection sklad_inventory_cs --out $BACKUPS_
 #find $BACKUPS_DIR -type f -mtime +$DAYSTORETAINBACKUP -exec rm {} +
 echo "--------------------------------------------"
 echo "Database backup complete!"
-
