@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 #=====================================================================
 # Set the following variables as per your requirement
 #=====================================================================
@@ -29,7 +30,7 @@ echo "Performing backup of $MONGO_DATABASE"
 echo "--------------------------------------------"
 # Create backup directory
 if ! mkdir -p $BACKUPS_DIR; then
-	chown user:user  $BACKUPS_DIR 
+	chown user:user  $BACKUPS_DIR
  echo "Can't create backup directory in $BACKUPS_DIR. Go and fix it!" 1>&2
   exit 1;
 fi;
@@ -108,5 +109,3 @@ rm -rf $BACKUP_NAME
 find $BACKUPS_DIR -type f -mtime +$DAYSTORETAINBACKUP -exec rm {} +
 echo "--------------------------------------------"
 echo "Database backup complete!"
-
-
