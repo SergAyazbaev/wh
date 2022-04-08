@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../fonts/glyphicons-halflings-regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family: 'Font_Mult';  /*EtienneBQ*/
+    /*src: local(Algerian);*/
+    /*src: url(fonts/mult.otf) format('truetype');*/
+    src: url('../fonts/mult.otf') format('truetype');
+    font-weight: normal;
+}
+
+
+@font-face {
+    font-family: 'FiraCode';
+    /*noinspection CssUnknownTarget*/
+    src: url('../fonts/FiraCode.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'fira';
+    src: url('../fonts/fira.ttf') format('truetype');
+    font-weight: normal;
+}
+
+
+/*h5{*/
+/*    font-family: 'FiraCode';*/
+/*    font-size: 25px;*/
+/*}*/
+
+h1, .h1 {
+    font-size: 22px;
+    /*//36px;*/
+    margin: 5px;
+}
+
+
+h2, .h2 {
+    /*font-family: Font_Mult, sans-serif;*/
+    font-size: 21px;
+    margin: 0px 15px 20px;
+
+}
+
+@media (max-width: 690px) {
+    h2, .h2 {
+        font-size: 22px;
+        margin: 0px 15px 20px;
+        text-align: center;
+        font-family: Helvetica, sans-serif;
+    }
+}
+
+.breadcrumb {
+    padding: 2px 15px;
+    margin-bottom: 9px;
+    margin-top: -17px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    display: none;
+}
+
+
+/*//NEW FONTS/*/
+/*noinspection ALL*/
+@font-face {
+    font-family: 'Font_1';
+    src: url('../fonts/new/BebasNeue-Bold.ttf') format('truetype');
+    font-weight: normal;
+}
+
+
+/*// 500 /*/
+@media (max-width: 500px) {
+    .navbar-brand {
+        font-family: Font_Mult, serif;
+        /*font-family: FiraCode, serif;*/
+        font-size: 34px;
+        font-style: italic;
+    }
+}
+

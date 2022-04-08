@@ -1,0 +1,33 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "isodate": "^0.1.4",
+    "javascript-barcode-reader": "^0.3.0",
+    "jii": "^1.0.18",
+    "jii-ar-sql": "^0.15.0",
+    "jii-model": "^0.14.1",
+    "mongodb": "^3.1.6",
+    "vue": "^2.5.17",
+    "vue-qrcode-reader": "^1.2.2",
+    "vue-window-modal": "git+https://github.com/ropbla9/vue-window-modal.git"
+  },
+  "name": "wh3a",
+  "description": "<p align=\"center\">     <a href=\"https://github.com/yiisoft\" target=\"_blank\">         <img src=\"https://avatars0.githubusercontent.com/u/993323\" height=\"100px\">     </a>     <h1 align=\"center\">Yii 2 Advanced Project Template</h1>     <br> </p>",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SergeyMorozov1/wh.git"
+  },
+  "author": "Morozov Sergey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SergeyMorozov1/wh/issues"
+  },
+  "homepage": "https://github.com/SergeyMorozov1/wh#readme"
+}

@@ -1,0 +1,542 @@
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+    color: #918d9e;
+    background-color: #00000012;
+}
+
+.navbar-brand {
+    height: 35px;
+    padding: 15px 15px;
+}
+
+.cart_top_base {
+    width: 80%;
+    /* background-color: #2525bb; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: block;
+    position: fixed;
+}
+
+.cart_top_box {
+    background-color: white;
+    min-width: 445px;
+    width: 30%;
+    display: block;
+    /* background-color: #00ff1142; */
+    float: left;
+    padding: 15px 15px 0px 15px;
+    margin: 10px;
+    margin-left: 0px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+}
+
+.cart_box_small, .cart_box_tab {
+    width: 390px;
+    float: left;
+    margin: 10px;
+}
+
+.cart_box_tab {
+
+}
+
+.cart_top_history {
+
+    min-width: 65%;
+    max-width: 98%;
+    display: block;
+    background-color: #00ff110f;
+    float: left;
+    padding: 15px 15px 0px 15px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
+}
+
+/*.form-group{*/
+/*margin: 0px 10%;*/
+/*width: 80%;*/
+/*min-width: 160px;*/
+/*}*/
+
+
+.top_box {
+    width: 100%;
+    float: left;
+    padding: 18px;
+    position: inherit;
+    display: none;
+}
+
+.top_box_level2 {
+    max-width: 645px;
+    float: left;
+    /*background-color: #00ff920f;*/
+    padding: 40px 4px;
+    position: inherit;
+    display: block;
+}
+
+.breb_crumbs_box {
+    max-width: 270px;
+    width: 266px;
+    height: 350px;
+    background-color: #cfff0029;
+    display: block;
+    position: inherit;
+    float: left;
+    padding: 10px 20px 0px 22px;
+    border: 5px solid #ece38382;
+    margin: 10px 0px 10px 5%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.breb_crumbs_minibox {
+    max-width: 300px;
+    float: left;
+    padding: 10px 20px 0px 63px;
+    margin: 10px 0px 0px 5%;
+}
+
+p.breb_crumbs_pice {
+    /*width: 100px;*/
+    /*background-color: antiquewhite;*/
+
+    display: block;
+    position: relative;
+    float: left;
+    margin-left: 7px;
+}
+
+#postpv-dt_create, #postpv-dt_create_end {
+    width: 200px;
+    display: block;
+    position: inherit;
+    font-size: 30px;
+}
+
+/*#period{*/
+/*margin-left: 8px;*/
+/*margin-bottom: 10px;*/
+/*color: #fff;*/
+/*background-color: #5cb85c;*/
+/*border-color: #4cae4c;*/
+/*}*/
+/*#period:hover{*/
+/*background-color: #449d44;*/
+/*}*/
+
+
+@media (max-width: 768px)  and (orientation: landscape) {
+    .container {
+        width: 100%;
+        background-color: #3c763d;
+    }
+
+    .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+        width: 100%;
+        display: block;
+        float: left;
+        margin: 5px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        /*background-color: #2aabd221;;*/
+        background-color: #c7d7dc;
+    }
+
+    .table_with {
+        overflow: auto;
+        display: contents;
+    }
+
+}
+
+/*@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}*/
+
+
+.table_with {
+    width: 100%;
+    overflow: auto;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+
+/*/// Для размера более 1530*/
+@media (min-width: 768px) {
+    .container {
+        width: auto;
+        min-width: 890px;
+    }
+}
+
+/*/// Для размера более 1530*/
+@media (min-width: 920px) {
+    .container {
+        width: 900px;
+    }
+
+
+}
+
+/*/// Для размера более 1530*/
+@media (min-width: 1110px) {
+    .container {
+        width: 1100px;
+    }
+
+}
+
+/*/// Для размера более 1530*/
+@media (min-width: 1220px) {
+    .container {
+        width: 1200px;
+    }
+
+
+}
+
+/*/// Для размера более 1530*/
+@media (min-width: 1340px) {
+    .container {
+        width: 1300px;
+    }
+
+
+}
+
+/*/// Для размера более 1530*/
+@media (min-width: 1520px) {
+    .container {
+        width: 1500px;
+    }
+
+
+}
+
+
+::-webkit-scrollbar {
+    /*width:4px;*/
+    height: 5px;
+    background-color: #1d78b529;
+}
+
+::-webkit-scrollbar-thumb {
+    /*border-width:1px 1px 1px 2px;*/
+    /*border-color: #333;*/
+    /*background-color: #aaaaaa4a;*/
+
+    border-width: 8px 7px 10px 9px;
+    border-color: #d6d328a8;
+    background-color: #35826f54;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-width: 1px 1px 1px 2px;
+    border-color: #555;
+    background-color: #777;
+}
+
+/*::-webkit-scrollbar-track{*/
+/*border-width:2;*/
+/*}*/
+
+
+/*span.glyphicon {*/
+/*background-color: #8dff7f63;*/
+/*border: 1px solid;*/
+/*border-radius: 5px;*/
+/*padding: 3px;*/
+
+/*}*/
+/*span.glyphicon:hover {*/
+/*background-color: #0b93d54f;*/
+/*}*/
+
+/*.btn-warning {*/
+/*margin-left: 4px;*/
+/*margin-right: 4px;*/
+/*font-size: 39px;*/
+/*padding: 0px 12px;*/
+/*margin: 5px;*/
+/*height: 34px;*/
+/*line-height: 0.1px;*/
+/*}*/
+
+input[type=date] {
+    background-color: #feff1f63;
+}
+
+.date_period, .date_period1 {
+    width: max-content;
+    background-color: #ccb66e3d;
+    padding: 8px;
+    margin: 1px 6px;
+    float: left;
+}
+
+.date_period1 {
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    margin-bottom: 7px;
+}
+
+.summary {
+    color: #0000004d;
+    /* background-color: #00ffff47; */
+    display: block;
+    width: 250px;
+    position: initial;
+    float: right;
+}
+
+div.tree_land2 {
+    max-width: 300px;
+    border: 1px solid #c3bfae;
+    border-radius: 10px;
+    font-size: small;
+    font-weight: normal;
+    font-variant: normal;
+    position: relative;
+    float: left;
+    clear: inherit;
+}
+
+textarea.form-control {
+    max-width: 100%;
+    font-size: 21px;
+    height: 82px;
+    max-height: inherit;
+    position: inherit;
+    /*color: #ff1f2d;*/
+}
+
+
+@media (max-width: 710px) {
+    /*.navbar-inverse {*/
+    /*background-color: #222;*/
+    /*border-color: #080808;*/
+    /*display: contents;*/
+    /*}*/
+    .navbar-nav {
+        margin: 7.5px -15px;
+        background-color: darkslategray;
+        display: grid;
+        position: inherit;
+    }
+
+    /*.navbar-inverse .navbar-brand {*/
+    /*color: #262392;*/
+    /*font-size: large;*/
+    /*font-style: oblique;*/
+    /*font-variant: petite-caps;*/
+    /*}*/
+    .breadcrumb {
+        display: none;
+    }
+
+    .pv_motion_create_ok_button {
+        display: block;
+        position: inherit;
+        padding: 15px 50px;
+        background-color: #ffebcd8f;
+        float: none;
+        width: auto;
+        overflow: auto;
+    }
+
+    .nav > li {
+        padding-bottom: 20px;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: #d2f5df;
+        padding: 12px 45px;
+        font-variant: petite-caps;
+        font-size: medium;
+    }
+
+    /*.container > .navbar-header,*/
+    /*.container-fluid > .navbar-header,*/
+    /*.container > .navbar-collapse,*/
+    /*.container-fluid > .navbar-collapse {*/
+    /*margin-right: -15px;*/
+    /*margin-left: -15px;*/
+    /*background-color: #0000004a;*/
+    /*}*/
+    textarea.form-control {
+        height: auto;
+        max-width: 404px;
+        /*width: -webkit-fill-available;*/
+    }
+
+    #tz-name_tz {
+        max-width: 100%;
+        font-size: 21px;
+        margin: 0px;
+        width: 518px;
+        height: auto;
+    }
+
+}
+
+
+@media (max-width: 677px) {
+    h1, .h1 {
+        font-family: Helvetica, Font_EC, sans-serif;
+        margin: 0px;
+        /*display: inline-block;*/
+        /*padding: 12px 30px;*/
+    }
+
+
+    .navbar-inverse {
+        display: contents;
+        color: #34343c;
+        background-color: #2f4f4f;
+    }
+
+
+    .navbar-inverse .navbar-brand {
+        color: #262392;
+        font-size: 30px;
+    }
+
+}
+
+
+div > .help-block {
+    font-weight: 800;
+    color: darkorange;
+
+}
+
+.btn-default:hover {
+    color: #333;
+    background-color: white;
+    border-color: snow;
+}
+
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color: #101010;
+    /*background-color: blanchedalmond;*/
+    padding: 10px 59px;
+    /*width: 99%;*/
+
+    width: calc(100% - 150px);
+    margin: -6px;
+    float: right;
+}
+
+@media (min-width: 120px) and (max-width: 770px) {
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        width: 90%;
+        padding: 0px 10px;
+    }
+}
+
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    background-color: #0b93d50d;
+}
+
+@media (min-width: 1520px) {
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #101010;
+        background-color: unset;
+        padding: 0px;
+        /*width: 99%;*/
+        margin: -6px;
+    }
+
+
+    .container {
+        /*width: 1500px;*/
+        /*height: 25px;*/
+        /*overflow: auto;*/
+    }
+}
+
+.navbar-inverse {
+
+    background-color: #504646;
+    border-color: #0808083b;
+}
+
+@media (min-width: 768px) {
+    .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+        border-color: #101010;
+        /*background-color: #0b93d50d;*/
+        padding: 2px 15px;
+        /* width: 99%; */
+        margin: -6px 15px;
+        background-color: unset;
+    }
+
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: -15px;
+        font-variant: petite-caps;
+
+        line-height: 1;
+        background-color: unset;
+        padding: 0;
+        font-size: 20px;
+        height: 20px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .container {
+        width: 96%;
+        padding: 0px;
+        padding-top: 4px;
+    }
+}
+
+.navbar-nav > li {
+    float: left;
+    /*background-color: aqua;*/
+    /*height: 25px;*/
+    margin-left: 1px;
+    margin-top: 2px;
+}
+
+.nav li > form > button.logout {
+    /* padding: 15px; */
+    border: none;
+    /*background-color: blueviolet;*/
+    background-color: #fff20029;
+    padding: 1px 10px;
+    margin: 0;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #9d9d9d;
+    padding: 0px 10px;
+    /*border: 2px solid;*/
+}
+
+.navbar-inverse {
+    height: 28px;
+    min-height: 1px;
+}
+
+
+/*.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {*/
+/*    !*background-color: #2aa5e0;*!*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    width: 86%;*/
+/*    padding: 20px;*/
+/*    z-index: 99;*/
+/*}*/
