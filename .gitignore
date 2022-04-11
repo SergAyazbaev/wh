@@ -49,7 +49,7 @@ phpunit.phar
 
 /frontend/config
 /frontend/runtime
-/frontend/web/index.php
+#///frontend/web/index.php
 /frontend/web/assets/*
 /frontend/web/assets/reports/*
 /frontend/web/photo/*
