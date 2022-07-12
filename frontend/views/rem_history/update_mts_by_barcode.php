@@ -109,17 +109,12 @@ use yii\widgets\Pjax;
             ]);
         ?>
     </div>
-    <!--            <div class="next_futer">-->
-    <!---->
-    <!--                --><? //= Html::a('Далее >>', ['mobile_inventory/init_table'], ['class' => ' next_step btn btn-success']) ?>
-    <!---->
-    <!--            </div>-->
 </div>
 
 
 <?php
 $script = <<<JS
-    
+
 ////////////
 $(document).ready(function() {
     $( ".pv_motion_create_ok_button").show();
@@ -136,15 +131,15 @@ $(document).on('keypress',function(e) {
 });
 
 ////////////
-$('#go_home').click(function() {    
+$('#go_home').click(function() {
     window.history.back();
 });
 
 //////////////////// Debitor -top
 $('#rem_history-bar_code').change(function() {
-        
+
     var  number = $(this).val();
-    var  text = $('#sklad-wh_debet_top>option[value='+number+']').text();    
+    var  text = $('#sklad-wh_debet_top>option[value='+number+']').text();
      //alert(number);
 
     $.ajax( {
@@ -152,15 +147,15 @@ $('#rem_history-bar_code').change(function() {
 		data: {
 		    bar_code :number
 		},
-			success: function(res) {		    
-		             $('input#rem_history-short_name').val(res);		    
+			success: function(res) {
+		             $('input#rem_history-short_name').val(res);
 					},
 			error: function( res) {
 						alert('JS.sklad-wh_destination '+res );
 						console.log(res);
 					}
     } );
-    
+
 });
 
 JS;

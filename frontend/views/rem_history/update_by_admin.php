@@ -2,7 +2,6 @@
 
 use kartik\select2\Select2;
 use yii\helpers\Html;
-use yii\jui\AutoComplete;
 use yii\widgets\ActiveForm;
 
 use yii\widgets\Pjax;
@@ -16,7 +15,7 @@ use yii\widgets\Pjax;
 <style>
     .form-control {
         /*background-color: #0b93d5;*/
-        width: auto;
+        width: 100%;
     }
 
     .form-group {
@@ -53,84 +52,53 @@ use yii\widgets\Pjax;
     ?>
 
     <?php
-    //ddd($pool);
 
     echo $form->field($model, 'bar_code')
-        ->widget(
-            AutoComplete::className(), [
-            'options' => [
-                'class' => 'form-group ',
-                'placeholder' => $model->getAttributeLabel('bar_code'),
-                'autofocus' => true,
-            ],
-
-            'clientOptions' => [
-                'class' => 'form-group ',
-                'source' => $pool,
-                'enableAjax' => true,
-                'autoFill' => false,
-                'minLength' => '3',
-                'showAnim' => 'fold',
-                // 'delay' => 100
-            ],
-        ])
-        ->textInput();
-    //        ->label(false);
+        //->textInput(['readonly' => 'readonly']);
     ?>
 
-
     <?= $form->field($model, 'short_name')
-        ->textInput([
-                'placeholder' => $model->getAttributeLabel('short_name'),
-                'style' => 'width: 477px; margin-right: 5px;',
-            ]
-        );
-    //->label(false);
+        //->textInput(['readonly' => 'readonly',]);
     ?>
 
     <?= $form->field($model, 'diagnoz')
-        ->widget(
-            AutoComplete::className(), [
-            'options' => [
-                'class' => 'form-group ',
-                'placeholder' => $model->getAttributeLabel('bar_code'),
-                'autofocus' => true,
-            ],
-
-            'clientOptions' => [
-                'class' => 'form-group ',
-                'source' => $pool_diagnoz,
-                'enableAjax' => true,
-                'autoFill' => false,
-                'minLength' => '2',
-                'showAnim' => 'fold',
-                // 'delay' => 100
-            ],
-        ])
-        ->textarea([
-                'placeholder' => $model->getAttributeLabel('diagnoz'),
-                'style' => 'width: 477px; margin-right: 5px;',
-            ]
-        );
-    //        ->label(false);
+        //->textarea(['readonly' => 'readonly']);
     ?>
 
-    <?= $form->field($model, 'mts_user_id')
+
+    <?= $form->field($model, 'array_decision')
         ->widget(Select2::className()
             , [
-                'name' => 'st',
-                'data' => ['' => "Не выбран..."] + $spr_list,
+                // 'name' => 'st',
+                'data' => $spr_decision_all,
                 'theme' => Select2::THEME_BOOTSTRAP,
                 'size' => Select2::SMALL, //LARGE,
+                'maintainOrder' => true,
+
+                'options' => [
+                    'placeholder' => 'Выбрать... записать ...',
+                    'tabindex' => true,
+                    'multiple' => true,
+                    'autocomplete' => 'off'
+                ],
+
+                'pluginOptions' => [
+                    'tags' => true,
+                    'tokenSeparators' => ['. ', '; ', ': '],
+                    'maximumInputLength' => 200
+                ],
+
             ]);
     ?>
 
-    <?= $form->field($model, 'num_busline')
-        ->textInput([
-            'placeholder' => '1,2,3... 150',
-            'style' => 'width: 177px; margin-right: 5px;',
-        ])->label('Номер маршрута');
+    <?= $form->field($model, 'list_details')
+        ->textarea([
+                'placeholder' => $model->getAttributeLabel('list_details'),
+                'style' => 'width: 477px; margin-right: 5px;',
+            ]
+        );
     ?>
+
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

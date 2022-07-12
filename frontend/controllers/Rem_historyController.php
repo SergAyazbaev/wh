@@ -330,86 +330,108 @@ class Rem_historyController extends Controller
     }
 
 
-    /**
-     *  Основное исправление РЕМОНТНИКАМИ
-     */
-    public function actionNew_by_barcode()
-    {
-        $bar_code = Yii::$app->request->get('bar_code');
+        /**
+         *  Основное исправление РЕМОНТНИКАМИ
+         */
+        public function actionNew_by_barcode()
+        {
+            $bar_code = Yii::$app->request->get('bar_code');
 
-        ///
-        $model = Rem_history::findOne($bar_code);
-
-
-        ///
-        ///  Справочная информация на основе соего же поля
-        $spr_decision_all = Rem_history::findDecision_all(); //findDecision_all
-        //        ddd($spr_decision_all);
-
-        ///Возвращает массив с БОЛЕЕ подробными неисправностями
-        $spr_decision_ids = Rem_history::ArrayTranslator($spr_decision_all);
-        $spr_decision_all = [];
-
-
-        sort($spr_decision_ids, SORT_ASC);
-
-        // Первая буква. Сделать Заглавной
-        foreach ($spr_decision_ids as $item) {
-            //            $item_a = mb_convert_case($item, MB_CASE_TITLE, 'UTF-8');
-            $item_a = mb_convert_case($item, MB_CASE_UPPER, 'UTF-8');
-            $spr_decision_all[$item_a] = $item_a;
-        }
-        //ddd($spr_decision_all);
-
-
-        // Двойники удаляет из массива
-        $spr_decision_all = array_unique($spr_decision_all);
-        //ddd($spr_decision_all);
-
-        ///
-        $model->array_decision = explode('. ', $model->decision);
-        //        ddd($model);
-
-
-        ///
-        /// LOAD
-        ///
-        if ($model->load(Yii::$app->request->post())) {
-
-            $model->id = (int)$model->id;
-
-
-            $model->rem_user_name = Yii::$app->user->identity->username;
-            $model->rem_user_group = Yii::$app->user->identity->group_id;
-            $model->rem_user_id = Yii::$app->user->identity->id;
-            $model->rem_user_ip = $this->getUserIP();
-
-            $model->dt_rem_timestamp = strtotime('now');
+            ///
+            $model = Rem_history::findOne($bar_code);
 
 
             ///
-            if (is_array($model->array_decision)) {
-                $model->decision = implode('. ', array_filter($model->array_decision));
+            ///  Справочная информация на основе соего же поля
+            $spr_decision_all = Rem_history::findDecision_all(); //findDecision_all
+            //        ddd($spr_decision_all);
+
+            ///Возвращает массив с БОЛЕЕ подробными неисправностями
+            $spr_decision_ids = Rem_history::ArrayTranslator($spr_decision_all);
+            $spr_decision_all = [];
+
+
+            sort($spr_decision_ids, SORT_ASC);
+
+            // Первая буква. Сделать Заглавной
+            foreach ($spr_decision_ids as $item) {
+                //            $item_a = mb_convert_case($item, MB_CASE_TITLE, 'UTF-8');
+                $item_a = mb_convert_case($item, MB_CASE_UPPER, 'UTF-8');
+                $spr_decision_all[$item_a] = $item_a;
             }
-            if (empty($model->array_decision)) {
-                $model->decision = '';
+            //ddd($spr_decision_all);
+
+
+            // Двойники удаляет из массива
+            $spr_decision_all = array_unique($spr_decision_all);
+            //ddd($spr_decision_all);
+
+            ///
+            $model->array_decision = explode('. ', $model->decision);
+            //        ddd($model);
+
+
+            ///
+            /// LOAD
+            ///
+            if ($model->load(Yii::$app->request->post())) {
+
+                $model->id = (int)$model->id;
+
+
+                $model->rem_user_name = Yii::$app->user->identity->username;
+                $model->rem_user_group = Yii::$app->user->identity->group_id;
+                $model->rem_user_id = Yii::$app->user->identity->id;
+                $model->rem_user_ip = $this->getUserIP();
+
+                $model->dt_rem_timestamp = strtotime('now');
+
+
+                ///
+                if (is_array($model->array_decision)) {
+                    $model->decision = implode('. ', array_filter($model->array_decision));
+                }
+                if (empty($model->array_decision)) {
+                    $model->decision = '';
+                }
+
+
+                //ddd($model);
+
+
+                if (!$model->save(true)) {
+                    ddd($model);
+                }
+                return $this->redirect(['/rem_history/index']);
             }
 
 
-            //ddd($model);
 
 
-            if (!$model->save(true)) {
-                ddd($model);
-            }
-            return $this->redirect(['/rem_history/index']);
+          /// Если это АДМИН или Саша
+          if( Yii::$app->user->identity->id == 10000 ||
+              Yii::$app->user->identity->id == 10012  ){
+
+                // $model->user_group = Yii::$app->user->identity->group_id;
+                // $model->user_id = Yii::$app->user->identity->id;
+//ddd(1112341);
+            //// By SASHA admin
+            return $this->render('update_by_admin.php', [
+                'model' => $model,
+                'spr_decision_all' => $spr_decision_all, // Справочная информация на основе соего же поля
+            ]);
+          }else{
+            //ddd(1112341);
+
+            return $this->render('update_by_barcode', [
+                'model' => $model,
+                'spr_decision_all' => $spr_decision_all, // Справочная информация на основе соего же поля
+            ]);
+          }
+
         }
 
-        return $this->render('update_by_barcode', [
-            'model' => $model,
-            'spr_decision_all' => $spr_decision_all, // Справочная информация на основе соего же поля
-        ]);
-    }
+
 
 
     /**
@@ -643,8 +665,6 @@ class Rem_historyController extends Controller
             date('d.m.Y', strtotime('now -23 days')),
             date('d.m.Y', strtotime('now -22 days')),
             date('d.m.Y', strtotime('now -21 days')),
-            date('d.m.Y', strtotime('now -20 days')),
-
             date('d.m.Y', strtotime('now -20 days')),
             date('d.m.Y', strtotime('now -19 days')),
             date('d.m.Y', strtotime('now -18 days')),
