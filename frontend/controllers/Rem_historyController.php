@@ -412,10 +412,6 @@ class Rem_historyController extends Controller
           /// Если это АДМИН или Саша
           if( Yii::$app->user->identity->id == 10000 ||
               Yii::$app->user->identity->id == 10012  ){
-
-                // $model->user_group = Yii::$app->user->identity->group_id;
-                // $model->user_id = Yii::$app->user->identity->id;
-//ddd(1112341);
             //// By SASHA admin
             return $this->render('update_by_admin.php', [
                 'model' => $model,
