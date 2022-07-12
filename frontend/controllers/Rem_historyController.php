@@ -408,6 +408,7 @@ class Rem_historyController extends Controller
 
 
 
+
           /// Если это АДМИН или Саша
           if( Yii::$app->user->identity->id == 10000 ||
               Yii::$app->user->identity->id == 10012  ){
