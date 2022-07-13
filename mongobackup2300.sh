@@ -12,7 +12,7 @@ MONGO_HOST="127.0.0.1"
 # Database port
 MONGO_PORT="27017"
 # Backup directory
-BACKUPS_DIR="/var/www/backup/2300"$MONGO_DATABASE
+BACKUPS_DIR="/var/www/backup/2300_"$MONGO_DATABASE
 
 # Database user name
 ####DBUSERNAME="username"
@@ -21,7 +21,7 @@ BACKUPS_DIR="/var/www/backup/2300"$MONGO_DATABASE
 # Authentication database name
 ####DBAUTHDB="admin"
 # Days to keep the backup
-DAYSTORETAINBACKUP="25"
+DAYSTORETAINBACKUP="125"
 #=====================================================================
 
 TIMESTAMP=`date +%F-%H%M`

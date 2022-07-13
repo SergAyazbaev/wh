@@ -11,7 +11,7 @@ MONGO_HOST="127.0.0.1"
 # Database port
 MONGO_PORT="27017"
 # Backup directory
-BACKUPS_DIR="/var/www/backup/wh_prod"$MONGO_DATABASE
+BACKUPS_DIR="/var/www/backup/"$MONGO_DATABASE
 
 # Database user name
 ####DBUSERNAME="username"
