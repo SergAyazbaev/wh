@@ -66,5 +66,5 @@ phpunit.phar
 /docs/
 
 
-/mongobackup.sh
+# /mongobackup.sh
 /json

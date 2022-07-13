@@ -1,7 +1,6 @@
 #!/bin/sh
 
 
-
 #=====================================================================
 # Set the following variables as per your requirement
 #=====================================================================
@@ -12,7 +11,7 @@ MONGO_HOST="127.0.0.1"
 # Database port
 MONGO_PORT="27017"
 # Backup directory
-BACKUPS_DIR="/var/www/backup/2300"$MONGO_DATABASE
+BACKUPS_DIR="/var/www/backup/wh_prod"$MONGO_DATABASE
 
 # Database user name
 ####DBUSERNAME="username"
@@ -21,7 +20,7 @@ BACKUPS_DIR="/var/www/backup/2300"$MONGO_DATABASE
 # Authentication database name
 ####DBAUTHDB="admin"
 # Days to keep the backup
-DAYSTORETAINBACKUP="25"
+DAYSTORETAINBACKUP="180"
 #=====================================================================
 
 TIMESTAMP=`date +%F-%H%M`
@@ -92,21 +91,21 @@ mongoexport --db $MONGO_DATABASE --collection rem_nepoladki --out $BACKUPS_DIR/$
 
 
 ####
-tar -jcvf $BACKUPS_DIR/$BACKUP_NAME/$BACKUP_NAME.gz $BACKUPS_DIR/$BACKUP_NAME
-rm -R $BACKUPS_DIR/$BACKUP_NAME/json
+#tar -jcvf $BACKUPS_DIR/$BACKUP_NAME/$BACKUP_NAME.gz $BACKUPS_DIR/$BACKUP_NAME
+#rm -R $BACKUPS_DIR/$BACKUP_NAME/json
 
 chown user:user -R  $BACKUPS_DIR
 chown user:user -R  $BACKUPS_DIR/$BACKUP_NAME
 
 
 # Rename dump directory to backup name
-mv dump $BACKUP_NAME
+#mv dump $BACKUP_NAME
 # Compress backup
-tar -zcvf $BACKUPS_DIR/$BACKUP_NAME.tgz $BACKUP_NAME
+#tar -zcvf $BACKUPS_DIR/$BACKUP_NAME.tgz $BACKUP_NAME
 # Delete uncompressed backup
-rm -rf $BACKUP_NAME
+#rm -rf $BACKUP_NAME
 
 # Delete backups older than retention period
 find $BACKUPS_DIR -type f -mtime +$DAYSTORETAINBACKUP -exec rm {} +
-echo "--------------------------------------------"
-echo "Database backup complete!"
+#echo "--------------------------------------------"
+echo "Database ONE day backup complete!"
