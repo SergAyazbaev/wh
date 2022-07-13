@@ -45,31 +45,28 @@ mongoexport --db $MONGO_DATABASE --collection sklad_past_inventory --out  $BACKU
 mongoexport --db $MONGO_DATABASE --collection sklad_cs_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_cs_inventory.json
 mongoexport --db $MONGO_DATABASE --collection sklad_cs_past_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_cs_past_inventory.json
 
-
-
-mongoexport --db $MONGO_DATABASE --collection sklad_shablon --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_shablon.js$
-
+mongoexport --db $MONGO_DATABASE --collection sklad_shablon --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_shablon.json
 
 mongoexport --db $MONGO_DATABASE --collection user --out  $BACKUPS_DIR/$BACKUP_NAME/json/user.json
 mongoexport --db $MONGO_DATABASE --collection sklad --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad.json
 
 mongoexport --db $MONGO_DATABASE --collection cross --out $BACKUPS_DIR/$BACKUP_NAME/json/cross.json
 mongoexport --db $MONGO_DATABASE --collection sklad_shablon --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_shablon.json
-mongoexport --db $MONGO_DATABASE --collection sklad_transfer --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_transfer.j$
+mongoexport --db $MONGO_DATABASE --collection sklad_transfer --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_transfer.json
 
 mongoexport --db $MONGO_DATABASE --collection spr_glob --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_glob.json
-mongoexport --db $MONGO_DATABASE --collection spr_glob_element --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_glob_eleme$
+mongoexport --db $MONGO_DATABASE --collection spr_glob_element --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_glob_element.json
 mongoexport --db $MONGO_DATABASE --collection spr_globam --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_globam.json
-mongoexport --db $MONGO_DATABASE --collection spr_globam_element --out $BACKUPS_DIR/$BACKUP_NAME/json/sprglobam_el$
+mongoexport --db $MONGO_DATABASE --collection spr_globam_element --out $BACKUPS_DIR/$BACKUP_NAME/json/sprglobam_element.json
 mongoexport --db $MONGO_DATABASE --collection spr_things --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_things.json
 
 mongoexport --db $MONGO_DATABASE --collection sprwh_top  --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_top.json
 mongoexport --db $MONGO_DATABASE --collection sprwh_element --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_element.json
-mongoexport --db $MONGO_DATABASE --collection sprwh_element_old --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_element$
+mongoexport --db $MONGO_DATABASE --collection sprwh_element_old --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_element_old.json
 mongoexport --db $MONGO_DATABASE --collection tk --out $BACKUPS_DIR/$BACKUP_NAME/json/tk.json
 mongoexport --db $MONGO_DATABASE --collection tz --out $BACKUPS_DIR/$BACKUP_NAME/json/tz.json
 
-mongoexport --db $MONGO_DATABASE --collection barcode_consignment --out $BACKUPS_DIR/$BACKUP_NAME/json/barcode_con$
+mongoexport --db $MONGO_DATABASE --collection barcode_consignment --out $BACKUPS_DIR/$BACKUP_NAME/json/barcode_consignment.json
 mongoexport --db $MONGO_DATABASE --collection barcode_pool --out $BACKUPS_DIR/$BACKUP_NAME/json/barcode_pool.json
 mongoexport --db $MONGO_DATABASE --collection consignment --out $BACKUPS_DIR/$BACKUP_NAME/json/consignment.json
 
