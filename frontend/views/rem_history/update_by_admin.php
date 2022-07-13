@@ -5,11 +5,6 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 use yii\widgets\Pjax;
-
-
-/* @var $this yii\web\View */
-/* @var $model frontend\models\Sprtype */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <style>
@@ -21,6 +16,7 @@ use yii\widgets\Pjax;
     .form-group {
         margin-bottom: 15px;
         max-width: 400px;
+        background-color: #cfca94;
     }
 </style>
 
@@ -53,7 +49,9 @@ use yii\widgets\Pjax;
 
     <?php
 
-    echo $form->field($model, 'bar_code')
+    echo $form->field($model, 'bar_code');
+    //->hint('Введите любой текст');
+    //->label('Текстовое поле');
         //->textInput(['readonly' => 'readonly']);
     ?>
 
@@ -101,7 +99,7 @@ use yii\widgets\Pjax;
 
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Исправлено АДМИНОМ!!! Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

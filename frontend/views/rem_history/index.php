@@ -98,18 +98,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     }
 
-    /*@media device-height (100px, 500px) {*/
-    /*    .scroll_mobile {*/
-    /*        width: 50%;*/
-    /*        height: calc(60vh - 60px);*/
-    /*        overflow: auto;*/
-    /*        max-height: 65vh;*/
-    /*    }        */
-    /*}*/
-
-    /*@media (max-width: 900px) {*/
-    /*}*/
-
     ul.pagination {
         display: block;
         position: absolute;
@@ -125,6 +113,7 @@ $this->params['breadcrumbs'][] = $this->title;
     td {
         padding: 0px;
     }
+
 </style>
 
 
@@ -233,6 +222,8 @@ $form = ActiveForm::begin(
                     'contentOptions' => ['style' => 'width: 10px;'],
                     'content' => function ($model) {
 
+
+
                         $str = '';
 
                         $url = Url::to(['new_by_barcode?bar_code=' . $model->_id]);
@@ -254,6 +245,19 @@ $form = ActiveForm::begin(
                                 ]
                             );
                         }
+
+                        if(Yii::$app->user->identity->id==10000 ||
+                           Yii::$app->user->identity->id==10012 ){
+                          $url = Url::to(['admin_edit_by_id?bar_code=' . $model->_id]);
+                          $str .= Html::a(
+                              'Admin', $url, [
+                                  'class' => 'btn btn-warning',
+                                  'method' => 'get',
+                                  'data-pjax' => 0,
+                              ]
+                          );
+                        }
+
 
                         return $str;
                     }
@@ -430,7 +434,7 @@ $(document).on('keypress',function(e) {
     if(e.which == 13) {
       e.preventDefault();
       return false;
-    }    
+    }
 });
 
 
@@ -440,20 +444,20 @@ $(document).on('keypress',function(e) {
     // GJDA043382
     // GJDA043176
 $('#barcode').on('keyup', function(event) {
-    
+
     if (event.keyCode==13) {
         var data=$(this).val();
         data=data.replace( /(\D)*/, '');
         //alert(data);     // GJDA043382
         //alert(data);     // GJDA043176
         // console.log(data);
-        
+
         //
         var element = document.getElementsByName('post_rem_history[bar_code]');
         $(element).val(data);
         $(element).trigger('click');
-        
-        /// yiiGridView   
+
+        /// yiiGridView
         $("#w1").yiiGridView("applyFilter");
        }
 });
@@ -464,4 +468,3 @@ JS;
 $this->registerJs($script, View::POS_READY);
 
 ?>
-
