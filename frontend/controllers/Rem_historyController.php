@@ -459,7 +459,7 @@ class Rem_historyController extends Controller
                         //        ddd($model);
 
 
-
+  //ddd(  $model);
 
 
                       /// Если это АДМИН или Саша
@@ -471,9 +471,15 @@ class Rem_historyController extends Controller
                                         /// LOAD 1
                                         ///
                                         if ($model->load(Yii::$app->request->post())) {
+                                        //  ddd(  $model);
+
 
                                             $model->id = (int)$model->id;
-
+                                             $model->dt_rem_timestamp =  $model->dt_rem_timestamp;
+                                              $model->rem_user_group =$model->rem_user_group ;
+                                                $model->rem_user_id =  $model->rem_user_id ;
+                                                $model->rem_user_ip =    $model->rem_user_ip ;
+                                                $model->rem_user_name =   $model->rem_user_name ;
 
                                             // $model->rem_user_name = Yii::$app->user->identity->username;
                                             // $model->rem_user_group = Yii::$app->user->identity->group_id;
