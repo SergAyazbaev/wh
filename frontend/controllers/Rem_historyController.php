@@ -472,7 +472,7 @@ class Rem_historyController extends Controller
                                         ///
                                         if ($model->load(Yii::$app->request->post())) {
                                         //  ddd(  $model);
-                                        
+
 
                                         // "bar_code" : "19600007115",
                                         //    "short_name" : "CVB24 master",
@@ -500,11 +500,6 @@ class Rem_historyController extends Controller
                                                 $model->rem_user_ip =    $model->rem_user_ip ;
                                                 $model->rem_user_name =   $model->rem_user_name ;
 
-                                            // $model->rem_user_name = Yii::$app->user->identity->username;
-                                            // $model->rem_user_group = Yii::$app->user->identity->group_id;
-                                            // $model->rem_user_id = Yii::$app->user->identity->id;
-                                            // $model->rem_user_ip = $this->getUserIP();
-                                            //
                                             // $model->dt_rem_timestamp = strtotime('now');
 
 
