@@ -515,7 +515,7 @@ class Rem_history extends ActiveRecord
             ->where(['AND',
                 ['>=', 'dt_create_timestamp', $dt_start],
                 ['<=', 'dt_create_timestamp', $dt_stop],
-                ['like', 'decision', '/'.$id_decision.'/mi']
+                ['like', 'decision', $id_decision ]
             ])
             ->count('decision');
     }
