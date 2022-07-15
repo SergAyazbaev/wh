@@ -517,7 +517,6 @@ class Rem_history extends ActiveRecord
                 ['<=', 'dt_create_timestamp', $dt_stop],
                 ['like', 'decision', $id_decision ]
             ])
-            ->regexp('decision', $id_decision)
             ->count('decision');
     }
 
