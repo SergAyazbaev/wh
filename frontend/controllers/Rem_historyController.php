@@ -820,11 +820,13 @@ class Rem_historyController extends Controller
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
 
         $uniq_arr = Rem_history::ArrayUniq_decision('now');
-        ddd($uniq_arr);
-        
+        dd($uniq_arr);
+
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
+        ddd($uniq_arr);
+
 
         $arr2 = [];
         ///
