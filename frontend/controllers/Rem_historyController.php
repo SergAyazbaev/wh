@@ -877,6 +877,7 @@ class Rem_historyController extends Controller
             $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, ' -30 days');
         }
 
+ddd($uniq_arr);
         ///
         asort($arr2);
 

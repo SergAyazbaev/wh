@@ -509,6 +509,7 @@ class Rem_history extends ActiveRecord
     {
         $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
         $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
+ddd(strtotime($dt_create . $period_str));
 
         return self::find()
             ->where(['AND',
