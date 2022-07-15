@@ -505,7 +505,7 @@ class Rem_history extends ActiveRecord
      * @return int
      * @throws \yii\mongodb\Exception
      */
-    static function countDecision_by_six_days($id_decision, $dt_create='now ', $period_str = '-6 days')
+    static function countDecision_by_six_days($id_decision, $dt_create='now ', $period_str = ' -7 days')
     {
         $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
         $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
