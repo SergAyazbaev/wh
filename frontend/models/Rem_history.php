@@ -405,8 +405,8 @@ class Rem_history extends ActiveRecord
     {
         $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
         $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
-        dd(date('d.m.Y',$dt_start));
-        dd(date('d.m.Y',$dt_stop));
+        // dd(date('d.m.Y',$dt_start));
+        // dd(date('d.m.Y',$dt_stop));
 
         return self::find()
             ->where(['AND',
@@ -515,11 +515,10 @@ class Rem_history extends ActiveRecord
             ->where(['AND',
                 ['>=', 'dt_create_timestamp', $dt_start],
                 ['<=', 'dt_create_timestamp', $dt_stop],
-                ['like', 'decision', $id_decision]
+                ['like', 'decision', $id_decision."%"]
             ])
             ->count('decision');
     }
-
 
     /**
      * Модель одной накладной BAR_CODE

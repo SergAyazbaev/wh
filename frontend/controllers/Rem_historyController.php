@@ -868,28 +868,10 @@ class Rem_historyController extends Controller
 
         ///
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
-
         $uniq_arr = Rem_history::ArrayUniq_decision('now ', ' -30 days');
-        // dd(  $uniq_arr);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
-        // ddd(  $uniq_arr);
-
-        // [
-        //     0 => 'ОБНОВЛЕНИЕ 6_0_6'
-        //     2 => 'ОБНОВЛЕНИЯ GPS'
-        //     5 => 'РАЗВЯЗКА 5В'
-        //     8 => 'РАЗВЯЗКА ТАЧ'
-        //     10 => 'ПРОВЕРЕННО_РАБОЧИЙ'
-        //     12 => 'ПРОПАЙКА GSM'
-        //     14 => 'РАБОЧИЙ'
-        //     25 => 'ОБНОВЛЕНИЕ 6_0_7'
-        //     33 => 'удаление флюса'
-        //     56 => 'ПРОГРЕВ GSM'
-        //     66 => 'Разъем куба'
-        // ]
-
 
         $arr2 = [];
         ///
