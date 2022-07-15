@@ -744,7 +744,7 @@ class Rem_historyController extends Controller
             date('d.m.Y', strtotime('now -23 days')),
             date('d.m.Y', strtotime('now -22 days')),
             date('d.m.Y', strtotime('now -21 days')),
-            
+
             date('d.m.Y', strtotime('now -20 days')),
             date('d.m.Y', strtotime('now -19 days')),
             date('d.m.Y', strtotime('now -18 days')),
@@ -820,6 +820,8 @@ class Rem_historyController extends Controller
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
 
         $uniq_arr = Rem_history::ArrayUniq_decision('now');
+        ddd($uniq_arr);
+        
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
