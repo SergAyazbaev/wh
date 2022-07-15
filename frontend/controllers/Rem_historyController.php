@@ -879,7 +879,8 @@ class Rem_historyController extends Controller
         $arr2 = [];
         ///
         foreach ($uniq_arr as $key_id => $item_id) {
-            $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
+            // $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
+            $item_a = $item_id;
             $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, ' -30 days');
         }
 
