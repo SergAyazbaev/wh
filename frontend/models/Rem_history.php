@@ -545,8 +545,8 @@ class Rem_history extends ActiveRecord
      */
     static function findDecision_all()
     {
-      $one_month = strtotime('now -15 days');
-      $all_month = strtotime('now -50 days');
+    //  $one_month = strtotime('now -15 days');
+      $all_month = strtotime('now -180 days');
       $arr = ArrayHelper::map(static::find()
             ->select(['id', 'decision'])
             ->where(['>=', 'dt_create_timestamp', $all_month])
