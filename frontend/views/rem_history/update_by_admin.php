@@ -59,8 +59,11 @@ use yii\widgets\Pjax;
         //->textInput(['readonly' => 'readonly',]);
     ?>
 
-    <?= $form->field($model, 'diagnoz')
+    <?= $form->field($model, 'diagnoz');
         //->textarea(['readonly' => 'readonly']);
+
+//ddd($model->array_decision);
+
     ?>
 
 
@@ -68,6 +71,7 @@ use yii\widgets\Pjax;
         ->widget(Select2::className()
             , [
                 // 'name' => 'st',
+                 'value' => $model->array_decision,
                 'data' => $spr_decision_all,
                 'theme' => Select2::THEME_BOOTSTRAP,
                 'size' => Select2::SMALL, //LARGE,

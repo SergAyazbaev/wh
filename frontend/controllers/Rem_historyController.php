@@ -474,36 +474,16 @@ class Rem_historyController extends Controller
                                         //  ddd(  $model);
 
 
-                                        // "bar_code" : "19600007115",
-                                        //    "short_name" : "CVB24 master",
-                                        //    "diagnoz" : "не принимает оплату",
-                                        //    "mts_user_id" : "7532",
-                                        //    "num_busline" : "7",
-                                        //    "user_name" : "zhanara",
-                                        //    "user_group" : 45,
-                                        //    "user_id" : 38,
-                                        //    "user_ip" : "10.0.0.120",
-                                        //    "decision" : "",
-                                        //    "list_details" : "dfgs",
-                                        //    "dt_create_timestamp" : 1654271520,
-                                        //    "mts_user_name" : "Тұрлыбек Даурен Сұлтанбекұлы",
-
-                                        $model->id = (int)$model->id;
-                                        $model->short_name = $model->short_name;
-                                        $model->diagnoz = $model->diagnoz;
-                                        $model->decision = $model->decision;
-                                        $model->list_details = $model->list_details;
-
-                                             $model->dt_rem_timestamp =  $model->dt_rem_timestamp;
-                                              $model->rem_user_group =$model->rem_user_group ;
-                                                $model->rem_user_id =  $model->rem_user_id ;
-                                                $model->rem_user_ip =    $model->rem_user_ip ;
-                                                $model->rem_user_name =   $model->rem_user_name ;
+                                        $model->dt_rem_timestamp =  $model->dt_rem_timestamp;
+                                        $model->rem_user_group =$model->rem_user_group ;
+                                        $model->rem_user_id =  $model->rem_user_id ;
+                                        $model->rem_user_ip =    $model->rem_user_ip ;
+                                        $model->rem_user_name =   $model->rem_user_name ;
 
                                             // $model->dt_rem_timestamp = strtotime('now');
 
 
-                                            ///
+                                            ///Важно
                                             if (is_array($model->array_decision)) {
                                                 $model->decision = implode('. ', array_filter($model->array_decision));
                                             }
@@ -521,6 +501,7 @@ class Rem_historyController extends Controller
                                             return $this->redirect(['/rem_history/index']);
                                         }
                                       }
+
 
                         //// By SASHA admin
                         return $this->render('update_by_admin.php', [
