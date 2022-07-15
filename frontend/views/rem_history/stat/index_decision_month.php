@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'title' => ['text' => 'Неисправности устройств'],
             //'subtitle' => ['text' => 'за месяц'],
-            'subtitle' => ['text' => 'за 90 дней'],
+            'subtitle' => ['text' => 'за 30 дней'],
 
 
             'series' =>
