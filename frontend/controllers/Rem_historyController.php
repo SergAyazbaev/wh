@@ -827,7 +827,7 @@ class Rem_historyController extends Controller
         ///
         foreach ($uniq_arr as $key_id => $item_id) {
             $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
-            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, 'now');
+            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a);
         }
 
         //$item_a=mb_convert_case($item, MB_CASE_UPPER, 'UTF-8');
@@ -863,7 +863,7 @@ class Rem_historyController extends Controller
         ///
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
 
-        $uniq_arr = Rem_history::ArrayUniq_decision('now ', ' -90 days');
+        $uniq_arr = Rem_history::ArrayUniq_decision('now ', ' -30 days');
 
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
@@ -874,7 +874,7 @@ class Rem_historyController extends Controller
         ///
         foreach ($uniq_arr as $key_id => $item_id) {
             $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
-            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, ' -90 days');
+            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, ' -30 days');
         }
 
         ///
