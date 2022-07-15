@@ -744,6 +744,7 @@ class Rem_historyController extends Controller
             date('d.m.Y', strtotime('now -23 days')),
             date('d.m.Y', strtotime('now -22 days')),
             date('d.m.Y', strtotime('now -21 days')),
+            
             date('d.m.Y', strtotime('now -20 days')),
             date('d.m.Y', strtotime('now -19 days')),
             date('d.m.Y', strtotime('now -18 days')),

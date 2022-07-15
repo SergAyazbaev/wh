@@ -401,7 +401,7 @@ class Rem_history extends ActiveRecord
      * @param string $period_str
      * @return array
      */
-    public static function ArrayUniq_decision($dt_create, $period_str = ' -6 days')
+    public static function ArrayUniq_decision($dt_create='now ', $period_str = ' -30 days')
     {
         $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
         $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
