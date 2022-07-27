@@ -3056,12 +3056,15 @@ class SkladController extends Controller
             ->asArray()
             ->all();
 
+      //  ddd($array_three);
+
         $array_rez = [];
         foreach ($array_three as $item) {
 
-            if ((int)$item['f_first_bort'] == 1) {
+            if (!empty($item['f_first_bort']) && (int)$item['f_first_bort'] === 1) {
                 $array_rez[$item['id']] = $item['name'] . ' (борт) ';
-            } else {
+            }
+             else {
                 $array_rez[$item['id']] = $item['name'];
             }
         }

@@ -23,7 +23,7 @@ class Spr_globam_element extends ActiveRecord
      */
     public static function collectionName()
     {
-        return [Yii::$app->params['vars'], 'spr_globam_element'];
+        return [Yii::$app->params['vars'], 'spr_globam_element']; ///sprglobam_element
         //mongoimport --db wh_prod  --collection spr_globam_element --type json --file sprglobam_element.json
     }
 
