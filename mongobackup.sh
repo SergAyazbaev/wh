@@ -40,10 +40,14 @@ fi;
 mongodump -d $MONGO_DATABASE
 
 
+
 mongoexport --db $MONGO_DATABASE --collection sklad_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_inventory.json
 mongoexport --db $MONGO_DATABASE --collection sklad_past_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_past_inventory.json
 mongoexport --db $MONGO_DATABASE --collection sklad_cs_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_cs_inventory.json
 mongoexport --db $MONGO_DATABASE --collection sklad_cs_past_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_cs_past_inventory.json
+mongoexport --db $MONGO_DATABASE --collection sklad_delete --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_delete.json
+mongoexport --db $MONGO_DATABASE --collection sklad_wh_invent --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_wh_invent.json
+
 
 mongoexport --db $MONGO_DATABASE --collection sklad_shablon --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_shablon.json
 
@@ -51,7 +55,6 @@ mongoexport --db $MONGO_DATABASE --collection user --out  $BACKUPS_DIR/$BACKUP_N
 mongoexport --db $MONGO_DATABASE --collection sklad --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad.json
 
 mongoexport --db $MONGO_DATABASE --collection cross --out $BACKUPS_DIR/$BACKUP_NAME/json/cross.json
-mongoexport --db $MONGO_DATABASE --collection sklad_shablon --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_shablon.json
 mongoexport --db $MONGO_DATABASE --collection sklad_transfer --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_transfer.json
 
 mongoexport --db $MONGO_DATABASE --collection spr_glob --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_glob.json
@@ -60,9 +63,25 @@ mongoexport --db $MONGO_DATABASE --collection spr_globam --out $BACKUPS_DIR/$BAC
 mongoexport --db $MONGO_DATABASE --collection spr_globam_element --out $BACKUPS_DIR/$BACKUP_NAME/json/sprglobam_element.json
 mongoexport --db $MONGO_DATABASE --collection spr_things --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_things.json
 
+# "crm",
+# "dialog",
+# "dialog_message",
+# "dialog_transfer",
+#
+# "spr_type_act",
+# "spr_type_motion",
+# "spr_vid_rab",
+
 mongoexport --db $MONGO_DATABASE --collection sprwh_top  --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_top.json
 mongoexport --db $MONGO_DATABASE --collection sprwh_element --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_element.json
 mongoexport --db $MONGO_DATABASE --collection sprwh_element_old --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_element_old.json
+mongoexport --db $MONGO_DATABASE --collection sprwh_el_change --out $BACKUPS_DIR/$BACKUP_NAME/json/sprwh_el_change.json
+mongoexport --db $MONGO_DATABASE --collection sprtype --out $BACKUPS_DIR/$BACKUP_NAME/json/sprtype.json
+
+mongoexport --db $MONGO_DATABASE --collection pe_identification --out $BACKUPS_DIR/$BACKUP_NAME/json/pe_identification.json
+mongoexport --db $MONGO_DATABASE --collection reflection --out $BACKUPS_DIR/$BACKUP_NAME/json/reflection.json
+mongoexport --db $MONGO_DATABASE --collection spr_restore --out $BACKUPS_DIR/$BACKUP_NAME/json/spr_restore.json
+
 mongoexport --db $MONGO_DATABASE --collection tk --out $BACKUPS_DIR/$BACKUP_NAME/json/tk.json
 mongoexport --db $MONGO_DATABASE --collection tz --out $BACKUPS_DIR/$BACKUP_NAME/json/tz.json
 
@@ -70,15 +89,12 @@ mongoexport --db $MONGO_DATABASE --collection barcode_consignment --out $BACKUPS
 mongoexport --db $MONGO_DATABASE --collection barcode_pool --out $BACKUPS_DIR/$BACKUP_NAME/json/barcode_pool.json
 mongoexport --db $MONGO_DATABASE --collection consignment --out $BACKUPS_DIR/$BACKUP_NAME/json/consignment.json
 
-mongoexport --db $MONGO_DATABASE --collection sklad_delete --out $BACKUPS_DIR/$BACKUP_NAME/json/sklad_delete.json
-
 mongoexport --db $MONGO_DATABASE --collection mobile_inventory --out $BACKUPS_DIR/$BACKUP_NAME/json/mobile_inventory.json
 
 mongoexport --db $MONGO_DATABASE --collection mts_change --out $BACKUPS_DIR/$BACKUP_NAME/json/mts_change.json
 mongoexport --db $MONGO_DATABASE --collection mts_crm --out $BACKUPS_DIR/$BACKUP_NAME/json/mts_crm.json
 mongoexport --db $MONGO_DATABASE --collection mts_demontage --out $BACKUPS_DIR/$BACKUP_NAME/json/mts_demontage.json
 mongoexport --db $MONGO_DATABASE --collection mts_montage --out $BACKUPS_DIR/$BACKUP_NAME/json/mts_montage.json
-
 
 mongoexport --db $MONGO_DATABASE --collection rem_decision --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_decision.json
 mongoexport --db $MONGO_DATABASE --collection rem_history --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_history.json
