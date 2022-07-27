@@ -12,7 +12,7 @@ MONGO_HOST="127.0.0.1"
 # Database port
 MONGO_PORT="27017"
 # Backup directory
-BACKUPS_DIR="/var/www/backup/2300_"$MONGO_DATABASE
+BACKUPS_DIR="/var/www/backup/2300"$MONGO_DATABASE
 
 # Database user name
 ####DBUSERNAME="username"
@@ -21,7 +21,7 @@ BACKUPS_DIR="/var/www/backup/2300_"$MONGO_DATABASE
 # Authentication database name
 ####DBAUTHDB="admin"
 # Days to keep the backup
-DAYSTORETAINBACKUP="125"
+DAYSTORETAINBACKUP="25"
 #=====================================================================
 
 TIMESTAMP=`date +%F-%H%M`
@@ -39,6 +39,7 @@ fi;
 ##### mongodump -d $MONGO_DATABASE --username $DBUSERNAME --password $DBPASSWORD --authenticationDatabase $DBAUTHDB
 
 mongodump -d $MONGO_DATABASE
+
 
 
 mongoexport --db $MONGO_DATABASE --collection sklad_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_inventory.json
