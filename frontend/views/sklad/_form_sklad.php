@@ -668,7 +668,7 @@ use yii\widgets\MaskedInput;
 $.post("listamort?id=" + $(this).val(), function(data){
         // console.log(data);
     $("select#subcat22-{multiple_index_my_id2}").html(data);
-    
+
 });
 JS
 
@@ -688,7 +688,7 @@ JS
                         'onchange' => <<< JS
 $.post("list_parent_id_amort?id=" + $(this).val(), function(data){
     $("select#subcat211-{multiple_index_my_id2}").val(data);
-});                     
+});
 JS
                     ],
 
@@ -855,16 +855,16 @@ JS
                             'id' => 'subcat-{multiple_index_my_id}',
 
                             'onchange' => <<< JS
-                        
+
 $.post("list_parent_id?id=" + $(this).val(), function(data){
     $("select#subcat11-{multiple_index_my_id}").val(data);
 });
-                        
+
 $.post("list_ed_izm?id=" + $(this).val(), function(data){
 //alert(data);
     $("select#sklad-array_tk-{multiple_index_my_id}-ed_izmer").val(data);
 });
-   
+
 
 JS
                             ,
@@ -999,16 +999,16 @@ JS
                             'id' => 'subcat-{multiple_index_my_id}',
 
                             'onchange' => <<< JS
-                        
+
 $.post("list_parent_id?id=" + $(this).val(), function(data){
     $("select#subcat11-{multiple_index_my_id}").val(data);
 });
-                        
+
 $.post("list_ed_izm?id=" + $(this).val(), function(data){
 //alert(data);
     $("select#sklad-array_tk-{multiple_index_my_id}-ed_izmer").val(data);
 });
-   
+
 
 JS
                             ,
@@ -1076,7 +1076,7 @@ JS
 $script = <<<JS
 
 //////////////////// VID - sklad-sklad_vid_oper
-//$('#sklad-sklad_vid_oper').change(function() {    
+//$('#sklad-sklad_vid_oper').change(function() {
 //     var  number22 = $('#sklad-sklad_vid_oper').val();
 //     var  text22   = $('#sklad-sklad_vid_oper>option[value='+number22+']').text();
 //      $('#sklad-sklad_vid_oper_name').val(text22);
@@ -1087,9 +1087,9 @@ $script = <<<JS
 
 //////////////////// Debitor -top
 $('#sklad-wh_debet_top').change(function() {
-        
+
     var  number = $(this).val();
-    var  text = $('#sklad-wh_debet_top>option[value='+number+']').text();    
+    var  text = $('#sklad-wh_debet_top>option[value='+number+']').text();
     $('#sklad-wh_debet_name').val(text) ;
 
      // var  number2 = $('#sklad-wh_debet_element').val();
@@ -1102,21 +1102,21 @@ $('#sklad-wh_debet_top').change(function() {
 		data: {
 		    id :number
 		},
-		//dataType: "json",		
-			success: function(res) {		 
+		//dataType: "json",
+			success: function(res) {
 		            $('#sklad-debet_element').html('');
-		            $('#sklad-wh_debet_element').html(res);		    
+		            $('#sklad-wh_debet_element').html(res);
 					},
 			error: function( res) {
 						alert('нет данных ' );
 						console.log(res);
 					}
     } );
-    
+
 });
 
 //////////////////// Debitor - element sklad-wh_debet_element
-$('#sklad-wh_debet_element').change(function() {    
+$('#sklad-wh_debet_element').change(function() {
      var  number2 = $('#sklad-wh_debet_element').val();
      var  text2   = $('#sklad-wh_debet_element>option[value='+number2+']').text();
       $('#sklad-wh_debet_element_name').val(text2);
@@ -1125,38 +1125,38 @@ $('#sklad-wh_debet_element').change(function() {
 
 //////////////////// Creditor
 $('#sklad-wh_destination').change(function() {
-    
+
     var  number = $(this).val();
     var  text = $('#sklad-wh_destination>option[value='+number+']').text();
  	    $('#sklad-wh_destination_name').val(text);
- 	    
-            // console.log(number);   
-            // console.log(text);   
-   
+
+            // console.log(number);
+            // console.log(text);
+
     $.ajax( {
 		url: '/sklad/list_element',
 		data: {
 		    id :number
 		},
-		//dataType: "json",		
-			success: function(res) {		 
+		//dataType: "json",
+			success: function(res) {
 		    $('#sklad-wh_destination_element').html('');
 		    $('#sklad-wh_destination_element').html(res);
-		    
+
 						//alert('OK. '+ res );
 					},
 			error: function( res) {
 						alert('не пошло. '+ res );
 					}
     } );
-   
+
 });
 
 //////////////////// destination_element - element
 /// sklad-wh_destination_element
- 
-$('#sklad-wh_destination_element').change(function() {    
-     var  number2 = $('#sklad-wh_destination_element').val();     
+
+$('#sklad-wh_destination_element').change(function() {
+     var  number2 = $('#sklad-wh_destination_element').val();
      var  text2   = $('#sklad-wh_destination_element>option[value='+number2+']').text();
       $('#sklad-wh_destination_element_name').val(text2);
 });
@@ -1165,63 +1165,63 @@ $('#sklad-wh_destination_element').change(function() {
 
 //
 // //////////////////// Creditor
-// $('#sklad-wh_dalee').change(function() {    
+// $('#sklad-wh_dalee').change(function() {
 //     var  number = $(this).val();
-//    
-//   
+//
+//
 //     $.ajax( {
 // 		url: '/sklad/list_element',
 // 		data: {
 // 		    id :number
-// 		},				
-// 			success: function(res) {		 
+// 		},
+// 			success: function(res) {
 // 		    $('#sklad-wh_dalee_element').html('');
 // 		    $('#sklad-wh_dalee_element').html(res);
-//		    
+//
 // 						//alert('OK. '+ res );
 // 					},
 // 			error: function( res) {
 // 						alert('JS.sklad-wh_dalee '+ res );
 // 					}
 //     } );
-//   
+//
 // });
 
 
 
 // $( "form" ).submit(function( event ) {
- 
+
 // $( "form" ).submit(function(  ) {
-//  
+//
 //    var  number1  = $('#sklad-wh_debet_top').val();
-//    var  text1  = $('#sklad-wh_debet_top>option[value='+number1+']').text();    
+//    var  text1  = $('#sklad-wh_debet_top>option[value='+number1+']').text();
 //     $('#sklad-wh_debet_name').val(text1);
-//     
+//
 //    var  number2  = $('#sklad-wh_debet_element').val();
-//    var  text2  = $('#sklad-wh_debet_element>option[value='+number2+']').text();    
+//    var  text2  = $('#sklad-wh_debet_element>option[value='+number2+']').text();
 //     $('#sklad-wh_debet_element_name').val(text2);
 //    //------------------
-//    
+//
 //     var  number3  = $('#sklad-wh_destination').val();
-//     var  text3  = $('#sklad-wh_destination>option[value='+number3+']').text();    
+//     var  text3  = $('#sklad-wh_destination>option[value='+number3+']').text();
 //      $('#sklad-wh_destination_name').val(text3);
-//      
+//
 //
 //    var  number4  = $('#sklad-wh_destination_element').val();
-//    var  text4  = $('#sklad-wh_destination_element>option[value='+number4+']').text();    
+//    var  text4  = $('#sklad-wh_destination_element>option[value='+number4+']').text();
 //     $('#sklad-wh_destination_element_name').val(text4);
 //    // ------------------
-//     
+//
 //    // alert(text2);
-//    
+//
 //  // event.preventDefault();
 //});
 
 
 
 
-$('#go_home').click(function() {    
-    window.history.back();  
+$('#go_home').click(function() {
+    window.history.back();
 })
 
 
@@ -1234,5 +1234,3 @@ $this->registerJs( $script, yii\web\View::POS_READY );
 
 <?php ActiveForm::end(); ?>
 <?php //Pjax::end(); ?>
-
-

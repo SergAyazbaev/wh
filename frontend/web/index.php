@@ -3,7 +3,7 @@
 use yii\helpers\VarDumper;
 
 
-error_reporting(-1);
+error_reporting(3);
 date_default_timezone_set("Asia/Almaty");
 
 ini_set('max_input_vars','10000');

@@ -618,10 +618,11 @@ class SkladController extends Controller
                 return '2 Не найден в справочнике. Id = ' . $wh_home_number;
             }
 
+
             /**
              * ПОИСК полного Двойника=Накладной
              */
-            if (Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
+            if (!Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
                 $alert_mess = (
                     "<br>" .
                     "<b>Двойник Накладной АСУОП. Операция остановлена.</b>" .
@@ -903,6 +904,18 @@ class SkladController extends Controller
                         return '1. В пуле отсутствует ШТРИХКОД 2. Это - не автомобильный стабилизатоор';
                     }
                 }
+
+                //  0 => '11.07.2022'
+                //  1 => '01228'
+                //  2 => 'Акт демонтажа'
+                //  3 => 'Алматыэлектротранс ТОО'
+                //  4 => '410LY02'
+                //  5 => 'GSM-антенна GlobalSat TR-600'
+                //  6 => ''
+                //  7 => '1'
+                //  8 => '10 000'
+
+                ddd($array_pos);
 
                 $model->array_tk_amort = [$array_pos];
 

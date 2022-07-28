@@ -126,8 +126,8 @@ $(document).ready(function() {
 
 
 ////////////
-$('#go_home').click(function() {    
-    window.history.back();  
+$('#go_home').click(function() {
+    window.history.back();
 })
 
 JS;
@@ -135,4 +135,3 @@ JS;
 $this->registerJs($script);
 //$this->registerJs( $script, View::POS_READY );
 ?>
-
