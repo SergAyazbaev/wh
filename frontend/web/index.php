@@ -1,9 +1,9 @@
 <?php
-
 use yii\helpers\VarDumper;
 
+error_reporting(1);
+ini_set("display_errors", 0);
 
-error_reporting(3);
 date_default_timezone_set("Asia/Almaty");
 
 ini_set('max_input_vars','10000');
@@ -72,6 +72,7 @@ function vd1($var)
     }
 
 }
+
 function dump($var)
 {
     var_dump($var);
