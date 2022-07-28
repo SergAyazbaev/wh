@@ -2428,6 +2428,126 @@ class SkladController extends Controller
 
 
     /**
+     *
+     * ПРЕДВАРИТЕЛЬНЫЙ ПРОСМТР СТРАНИЦЫ НАКЛАДНОЙ
+     * ПЕРЕД ВЫВОДОМ в PDF
+     *
+     *
+     * @return string
+     * @throws MpdfException
+     * @throws BarcodeException
+     * @throws ExitException
+     */
+    public function actionHtml_pdf_green() {
+      $para  = Yii::$app->request->queryParams;
+      $model = Sklad::findModelDouble( $para[ 'id' ] );
+
+      ////////////////////
+      ///// AMORT!!
+      $model1 = ArrayHelper::map(
+        Spr_globam::find()
+                  ->all(), 'id', 'name' );
+
+      $model2 = ArrayHelper::map(
+        Spr_globam_element::find()
+                          ->orderBy( 'id' )
+                          ->all(), 'id', 'name' );
+
+
+      ///// NOT AMORT
+      $model3 = ArrayHelper::map(
+        Spr_glob::find()
+                ->all(), 'id', 'name' );
+
+      $model4 = ArrayHelper::map(
+        Spr_glob_element::find()
+                        ->orderBy( 'id' )
+                        ->all(), 'id', 'name' );
+
+
+      $model5 = ArrayHelper::map( Spr_things::find()->all(), 'id', 'name' );
+
+      ////////////////////
+
+      ///// BAR-CODE
+      $str_pos       = str_pad( $model->id, 10, "0", STR_PAD_LEFT ); /// длинная строка с номером генерируется в длинную
+      $bar_code_html = MyHelpers::Barcode_HTML( 'sk' . $model->wh_home_number . '-' . $str_pos );
+      ///// BAR-CODE
+
+      //1
+      $html_css = $this->getView()->render( '/sklad/html_to_pdf/_form_css.php' );
+
+      //2
+      $html = $this->getView()->render(
+        '/sklad/html_to_pdf/_form_green', [
+        //            'bar_code_html' => $bar_code_html,
+        'model'  => $model,
+        'model1' => $model1,
+        'model2' => $model2,
+        'model3' => $model3,
+        'model4' => $model4,
+        'model5' => $model5,
+      ] );
+
+
+      //        dd($model);
+
+      // Тут можно подсмореть
+      //         $html = ss($html);
+
+      ///
+      ///  mPDF()
+      ///
+
+      $mpdf             = new mPDF();
+      $mpdf->charset_in = 'utf-8';
+
+
+      $mpdf->SetAuthor( 'Guidejet TI, 2019' );
+      $mpdf->SetHeader( $bar_code_html );
+      $mpdf->WriteHTML( $html_css, 1 );
+
+      //        $foot_str= '{PAGENO}';
+
+      $foot_str = '
+           <div class="print_row">
+                <div class="footer_left" >
+                       <div class="man_sign">Отпустил</div>
+                 </div>
+                 <div class="footer_right" >
+                       <div class="man_sign">Получил</div>
+                 </div>
+           </div>
+        ';
+
+      //$mpdf->SetFooter($foot_str );
+      $mpdf->SetHTMLFooter( $foot_str, 'O' );
+
+
+      ///////
+      $mpdf->AddPage(
+        '', '', '', '', '',
+        10, 10, 25, 42, '', 25, '', '', '',
+        '', '', '', '', '', '', '' );
+
+      //////////
+
+
+      $mpdf->WriteHTML( $html, 2 );
+      $html = '';
+
+      unset( $html );
+
+      $filename = 'Sk ' . date( 'd.m.Y H-i-s' ) . '.pdf';
+      $mpdf->Output( $filename, 'I' );
+
+
+      return false;
+    }
+
+
+
+    /**
      * ПРЕДВАРИТЕЛЬНЫЙ ПРОСМТР СТРАНИЦЫ НАКЛАДНОЙ
      * ПЕРЕД ВЫВОДОМ в PDF
      * (BARCODE)
