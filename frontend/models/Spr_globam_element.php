@@ -359,6 +359,51 @@ class Spr_globam_element extends ActiveRecord
     }
 
     /**
+     * @param string $name1
+     * @param string $name2
+     * @param string $name3
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public static function findArray_by_names_and_goup($name1 = '999999')
+    {
+
+        if ( !isset($name1) ) {
+            throw new NotFoundHttpException('Spr_globam_element -> findFullArray_by_names3. Не указан текст');
+        }
+
+        //
+        $poisk_cild = self::find()
+            ->where(
+                    ['like', 'name', $name1]
+            )
+            ->one();
+        //
+        $poisk_parent = Spr_globam::find()
+            ->where(
+                [
+                    '=',
+                    'id',
+                    (int)$poisk_cild['parent_id'],
+                ])
+            ->one();
+
+        if (isset($poisk_parent) && !empty($poisk_parent['id'])) {
+            $array_request['top']['id'] = $poisk_parent['id'];
+            $array_request['top']['name'] = $poisk_parent['name'];
+        }
+
+        if (isset($poisk_cild) && !empty($poisk_cild['id'])) {
+            $array_request['child']['id'] = $poisk_cild['id'];
+            $array_request['child']['name'] = $poisk_cild['name'];
+            $array_request['child']['intelligent'] = $poisk_cild['intelligent'];
+
+        }
+
+        return $array_request;
+    }
+
+    /**
      * findFullArray_by_name
      * Полное имя.
      * =

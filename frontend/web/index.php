@@ -4,6 +4,7 @@ use yii\helpers\VarDumper;
 error_reporting(1);
 ini_set("display_errors", 1);
 
+//
 date_default_timezone_set("Asia/Almaty");
 
 ini_set('max_input_vars','10000');
@@ -48,7 +49,7 @@ function dd($var)
     echo "<pre>";
     print_r($var);
     echo "<pre>";
-    die();
+    // die();
 }
 
 

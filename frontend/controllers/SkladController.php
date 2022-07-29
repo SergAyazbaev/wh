@@ -542,11 +542,22 @@ class SkladController extends Controller
         // Ведем один ГЛОБАЛЬНЫЙ день  для понимания dt_create
         //
         //$one_day =  $array[0]; // грязный формат
-        //ddd($this->one_day);
+        // ddd($this->one_day);
+
+
+        // ddd(11111);
+
 
 
         //
-        $date_day = preg_replace('/(\d.+)\.(\d.+)\.(\d.+)/', '$1.$2.$3 01:00:00', $array[0]);
+        $date_day = preg_replace('/(\d.+)[\.|\/](\d.+)[\.|\/](\d.+)/', '$1.$2.$3 01:00:00', $array[0]);
+        if (!$date_day) {
+            return '!date_day . Дата не распознана. Формат не читается ';
+        }
+
+        //
+        // $date_day = preg_replace('/(\d.+)\.(\d.+)\.(\d.+)/', '$1.$2.$3 01:00:00', $array[0]);
+
         if ((int)$this->one_day == (int)$date_day) {
             /// Переводим флаг на единицу
             $this->next_time = 1;
@@ -582,16 +593,11 @@ class SkladController extends Controller
             $array[6] = preg_replace('/S01960/', '1960', $array[6]);
             $array[6] = preg_replace('/S11960/', '1960', $array[6]);
 
-            //ddd($array);
+            // ddd($array);
 
 
             // ИД Парка - ГРУППЫ
             if (!empty($array[3])) {
-
-//                ddd($array[3]);
-//                ddd($array);
-//                ddd(1111);
-
 
                 //* Получить Номер Ид по названию Автопарка
                 $array_ids_group = Sprwhtop::One_array_from_name($array[3]);
@@ -603,13 +609,13 @@ class SkladController extends Controller
 
                 $parent_id = $array_ids_group['id'];
                 //ddd( $parent_id ); //14
+
             } else {
                 return ('Не найден автопарк -' . $array[3]);
             }
 
 
             // $parent_id -ид автопарка
-
             /**
              * Активный склад
              */
@@ -621,8 +627,9 @@ class SkladController extends Controller
 
             /**
              * ПОИСК полного Двойника=Накладной
+             * findDoubles_many_parameters       ($para_date, $para_akt, $wh_home_number, $para_vid, $para_barcode)
              */
-            if (!Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
+            if ( !empty($array[6]) &&  Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
                 $alert_mess = (
                     "<br>" .
                     "<b>Двойник Накладной АСУОП. Операция остановлена.</b>" .
@@ -651,9 +658,13 @@ class SkladController extends Controller
                 $model->id = Sklad::setNext_max_id();
 
 
-//                ddd($array);
-//                ddd($this); //one_day
+                //                ddd($array);
+                //                ddd($this); //one_day
 
+
+                //
+                $model->dt_create_timestamp = strtotime($date_day);
+                //ddd($model );
 
                 ///
                 /// Если задан Next_time()
@@ -694,6 +705,8 @@ class SkladController extends Controller
                 }
 
 
+// ddd($array);
+
                 //
                 //
                 if (!empty($array[4])) {// Гос.номер / Теперь  +БОРТ
@@ -716,7 +729,7 @@ class SkladController extends Controller
                 }
 
 
-                //ddd($wh_element_id);
+                // ddd($wh_element_id);
 
 
                 //
@@ -789,7 +802,7 @@ class SkladController extends Controller
                 // Примечание
                 $model->tx = 'Акт № ' . $array[1];
 
-                //ddd($model);
+                 // ddd($model);
 
                 //ddd($array);
 
@@ -829,27 +842,49 @@ class SkladController extends Controller
                     ];
 
                 } else {
+                    ///Если НЕТ ШТРИХКОДА, ТО ЭТО УСТРОЙСТВО ищем в справочнике
 
-                    if (isset($array[6]) || !empty($array[6])) {
-                        $str1 = 'Автомобильный стабилизатор напряжения';
-                        $str2 = 'для терминалов NEW8210';
-                        $str3 = 'c импульсной защитой';
+// ddd(11111);
+                    //
+                    if (isset($array[5]) || !empty($array[5])) {
+
+                        // $str1 = 'Автомобильный стабилизатор напряжения';
+                        // $str2 = 'для терминалов NEW8210';
+                        // $str3 = 'c импульсной защитой';
+                        //
+                        //   //Автомобильный стабилизатор напряжения для терминалов NEW8210 c импульсной защитой
+                        //   $str4 = 'Автомобильный';
+                        //   $str5 = 'стабилизатор';
+                        //   $str6 = 'напряжения';
+                        //   $str7 = 'терминалов NEW8210';
+                        //   $str8 = 'импульсной защитой';
+
 
                         /// Если они все присутсвуют в тексте
-                        if (
-                            strripos($array[6], $str1) > 0
-                            || strripos($array[6], $str2) > 0
-                            || strripos($array[6], $str3) > 0
-                        ) {
+                        // if (
+                        //     mb_stristr($array[5], $str1)
+                        //     || mb_stristr($array[5], $str2)
+                        //     || mb_stristr($array[5], $str3)
+                        //     || mb_stristr($array[5], $str4)
+                        //     || mb_stristr($array[5], $str5)
+                        //     || mb_stristr($array[5], $str6)
+                        //     || mb_stristr($array[5], $str7)
+                        //     || mb_stristr($array[5], $str8)
+                        // ) {
+
                             /// * Возвращает массив с ПОЛНЫМИ ДАННЫМИ (на входе его barcode)
                             /// // Это тоже приведется к нормальному виду
                             //  'Автомобильный стабилизатор напряжения''для терминалов NEW8210''c импульсной защитой';
                             //$fullArray_BY_barcode = Spr_globam_element::findFullArray(10);
 
-                            $fullArray_BY_barcode = Spr_globam_element::findFullArray_by_names3($str1, $str2, $str3);
+                            // $fullArray_BY_barcode = Spr_globam_element::findFullArray_by_names3($str1, $str2, $str3);
+
+
+                            //
+                            $fullArray_BY_barcode = Spr_globam_element::findArray_by_names_and_goup( trim($array[5]) );
 
                             //  'Автомобильный стабилизатор напряжения''для терминалов NEW8210''c импульсной защитой';
-                            //ddd($fullArray_BY_barcode);
+                            // ddd($fullArray_BY_barcode);
 
 
                             $array_pos = [
@@ -862,40 +897,28 @@ class SkladController extends Controller
                                 "take_it" => "0",
                                 "bar_code" => ""
                             ];
-                        }
-
-//                        ddd($array);
-//                        ddd(888);
+                        // }
 
                         ///...
                         /// ИЛИ Вот...
                         ///
 
 
-                        //findFullArray_by_name
-
-                        //ddd($array[6]);
-
                         /// Если они все присутсвуют в тексте
-                        if (strlen($array[6]) > 10) {
-
-                            $fullArray_BY_barcode = Spr_globam_element::findFullArray_by_name($array[6]);
-
-                            //ddd($fullArray_BY_barcode);
-
-                            $array_pos = [
-                                "wh_tk_amort" => $fullArray_BY_barcode['top']['id'],
-                                "wh_tk_element" => $fullArray_BY_barcode['child']['id'],
-                                "name" => (string)$fullArray_BY_barcode['child']['name'],
-                                "intelligent" => (string)$fullArray_BY_barcode['child']['intelligent'],
-                                "ed_izmer" => "1",
-                                "ed_izmer_num" => "1",
-                                "take_it" => "0",
-                                "bar_code" => ""
-                            ];
-
-
-                        }
+                        // if (strlen($array[5]) > 10) {
+                        //     $fullArray_BY_barcode = Spr_globam_element::findFullArray_by_name($array[5]);
+                        //     //ddd($fullArray_BY_barcode);
+                        //     $array_pos = [
+                        //         "wh_tk_amort" => $fullArray_BY_barcode['top']['id'],
+                        //         "wh_tk_element" => $fullArray_BY_barcode['child']['id'],
+                        //         "name" => (string)$fullArray_BY_barcode['child']['name'],
+                        //         "intelligent" => (string)$fullArray_BY_barcode['child']['intelligent'],
+                        //         "ed_izmer" => "1",
+                        //         "ed_izmer_num" => "1",
+                        //         "take_it" => "0",
+                        //         "bar_code" => ""
+                        //     ];
+                        // }
 
 
                         //ddd(1111);
@@ -915,7 +938,7 @@ class SkladController extends Controller
                 //  7 => '1'
                 //  8 => '10 000'
 
-                ddd($array_pos);
+                 // ddd($array_pos);
 
                 $model->array_tk_amort = [$array_pos];
 
@@ -935,7 +958,9 @@ class SkladController extends Controller
                 ///
                 /// SAVE
                 ///
-                // ddd($model);
+
+
+               // ddd($model);
 
                 if (!$model->save(true)) {
                     ddd($model->errors);
