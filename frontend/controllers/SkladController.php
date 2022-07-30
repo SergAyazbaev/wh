@@ -625,6 +625,14 @@ class SkladController extends Controller
             }
 
 
+
+
+            //
+            if (!is_numeric($array[6]) ) {
+                return ' array[6] . ШТРИХКОД не является числом ';
+            }
+
+
             /**
              * ПОИСК полного Двойника=Накладной
              * findDoubles_many_parameters       ($para_date, $para_akt, $wh_home_number, $para_vid, $para_barcode)
