@@ -628,7 +628,7 @@ class SkladController extends Controller
 
 
             //
-            if (!is_numeric($array[6]) ) {
+            if (!empty($array[6]) && !is_numeric($array[6]) ) {
                 return ' array[6] . ШТРИХКОД не является числом ';
             }
 
