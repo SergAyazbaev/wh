@@ -319,7 +319,7 @@ BootboxAsset::overrideSystemConfirm();
 
 <footer class="footer">
 
-    <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?>, 2018-2021<? //= date('Y') ?></p>
+    <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?>, 2018-2020<? //= date('Y') ?></p>
     <p class="mess"></p>
 
 
