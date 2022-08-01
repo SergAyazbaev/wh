@@ -473,6 +473,13 @@ class Sklad extends ActiveRecord
                 'message' => 'Id_Sklad == 0   ... ERROR!',
             ],
 
+            // 'array_count_all',
+            [
+                'array_count_all',
+                'default',
+                'value' => 0,
+            ],
+
             [
                 [
                     'dt_create',
@@ -1572,7 +1579,7 @@ class Sklad extends ActiveRecord
         $dt_stop_timestamp = strtotime($dt_stop_timestamp);
 
         ////              Акт демонтажа
-        if ($para_vid == 'Акт демонтажа') {
+        if ($para_vid === 'Акт демонтажа') {
             $xx = static::find()
                 ->where(
                     ['AND',
@@ -1591,7 +1598,7 @@ class Sklad extends ActiveRecord
         }
 
         ////
-        if ($para_vid == 'Акт монтажа') {
+        if ($para_vid === 'Акт монтажа') {
             $xx = static::find()
                 ->where(
                     ['AND',

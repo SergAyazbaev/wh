@@ -946,8 +946,12 @@ class SkladController extends Controller
                 //  7 => '1'
                 //  8 => '10 000'
 
-                 // ddd($array_pos);
+                 // Если массив меньше нуля
+                 if ( count($array_pos)<1 ){
+                      $model->array_count_all = 0;
+                 }
 
+                //
                 $model->array_tk_amort = [$array_pos];
 
 //                ddd($array_pos);
