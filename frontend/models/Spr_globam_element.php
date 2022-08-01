@@ -372,12 +372,20 @@ class Spr_globam_element extends ActiveRecord
             throw new NotFoundHttpException('Spr_globam_element -> findFullArray_by_names3. Не указан текст');
         }
 
-        //
+        // spr_globam_element  ===  "intelligent" : "1",
         $poisk_cild = self::find()
             ->where(
-                    ['like', 'name', $name1]
+              ['AND',
+                    ['like', 'name', $name1],
+                    ['<>','intelligent', '1']  //ПРОВЕРКА  не должен иметь штрих=код
+                  ]
             )
             ->one();
+
+if (empty($poisk_cild)){
+  return[];
+}
+
         //
         $poisk_parent = Spr_globam::find()
             ->where(

@@ -889,7 +889,9 @@ class SkladController extends Controller
 
 
                             //
-                            $fullArray_BY_barcode = Spr_globam_element::findArray_by_names_and_goup( trim($array[5]) );
+                            if (empty( $fullArray_BY_barcode = Spr_globam_element::findArray_by_names_and_goup( trim($array[5]) ))) {
+                                return 'Отсутствует ШТРИХКОД. А должен быть!';
+                            };
 
                             //  'Автомобильный стабилизатор напряжения''для терминалов NEW8210''c импульсной защитой';
                             // ddd($fullArray_BY_barcode);
