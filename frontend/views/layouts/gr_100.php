@@ -111,9 +111,14 @@ $menuItems = [
 
 
             [
-                'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ',
-                'url' => ['/stat_balans/all_empty'],
+                'label' => 'Sklad.Admin. Write_zerro. Запишем 0 в количество строк ',
+                'url' => ['/stat_balans/write_zerro'],
             ],
+
+                        [
+                            'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ',
+                            'url' => ['/stat_balans/all_empty'],
+                        ],
 
             [
                 'label' => 'Sklad.Admin.ИСПРАВИТЬ Все ПУСТЫЕ',

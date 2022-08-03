@@ -5616,4 +5616,64 @@ class Sklad extends ActiveRecord
     }
 
 
+////
+    public static function Delete_by_akt_date( $akt_str = '', $datetime = 0 )
+    {
+          // \Yii::$app
+          // ->db
+          // ->createCommand()
+          // ->delete('master_contacts', ['id' => $deletableMasterContacts])
+          // ->execute();
+
+          //User::deleteAll(
+      //
+      $model = Sklad::find()
+      ->select(
+            [
+                'id',
+                'dt_create',
+                'dt_create_timestamp',
+                'array_tk_amort.intelligent',
+                'array_tk_amort.bar_code',
+                'tx',
+                'array_count_all'
+            ]
+          )
+      ->where(
+            ['AND',
+              ['==',  'tx', $akt_str],
+              ['>=',  'dt_create_timestamp', $datetime ],
+
+              ['==',  'wh_home_number', 4419], // 4419
+              ['>=',  'dt_create_timestamp', 1609400000], //!!! 1609441260 1609400000
+
+            ]
+          )
+            ->orderBy('id ASC')
+       ->all();
+
+
+
+        // $this->findModel($id)->delete();
+    dd('');
+     //
+     foreach ($model  as $mod) {
+          echo "".$mod->id;
+          echo "  ".$mod->tx;
+          echo "  ".$mod->dt_create;
+          echo "  ".$mod->dt_create_timestamp;
+
+          // echo "  ".$model->wh_home_number; // 4419
+
+          dd('DELETED ');
+
+          // DELETE OK !!!
+          $mod->delete(); //// OK
+
+        }
+
+        return true;
+    }
+
+
 }

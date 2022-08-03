@@ -1557,6 +1557,100 @@ class Stat_balansController extends Controller
 //    }
 
 
+
+
+
+/**
+ * 1. Start Function. CALC FAST - TURNOFER
+ *
+ *  Пересчет ОБОРАЧИВАЕМОСТИ АСУОП НА РЕМОНТ
+ *=
+ */
+public function actionWrite_zerro()
+{
+
+
+  $models = Sklad::find()
+  ->select(
+        [
+            'id',
+            'dt_create',
+            'dt_create_timestamp',
+            'sklad_vid_oper_name',
+            'array_tk_amort',
+            'tx',
+            'array_count_all'
+        ]
+      )
+  ->where(
+        ['AND',
+        // wh_home_number
+        // ['>=',  'id', 86722], // 86722
+        ['==',  'wh_home_number', 4419], // 4419
+        ['>=',  'dt_create_timestamp', 1609400000], //!!! 1609441260 1609400000
+          ['like',  'tx', 'Акт'],
+              // 86755
+      ]
+    )
+
+    ->orderBy('id ASC') // ->orderBy(['tx ASC'],['id ASC']) // ->limit(40000)
+
+    ;
+    // ->asArray()
+    //->all();
+ // ddd(  $models);
+
+
+ $str_x = '';
+
+    //ОТЛОЖЕННАЯ загрузка частями
+    foreach ($models->each() as $model) {
+
+      $x1= ( empty( $model->array_tk_amort[0]) || empty($model->array_tk_amort) );
+      $x2= ( empty( $model->array_tk[0]) || empty($model->array_tk) );
+      $x3= ( empty( $model->array_casual[0]) || empty($model->array_casual) );
+
+          if (  $x1 && $x2 && $x3 ) {
+                if (  (int)$model->array_count_all >= 1 ){
+
+                      //
+                      if( $str_x == $model->tx ){
+                          continue;
+                      }
+                      else{
+
+                        dd('');
+                        // echo "top    -----".$model->id;
+                        // echo "  ".$model->dt_create;
+                        // echo "  ".$model->dt_create_timestamp;
+                        // echo "  ".$model->sklad_vid_oper;
+                        // echo "  ".$model->tx;
+                      }
+
+
+                    if( $str_x <> $model->tx ){
+                            //Выборать все Накладные этого АКТА. И Удалить!
+                            // 1654023660 - c 1 июня 2022
+                          Sklad::Delete_by_akt_date($model->tx , 1); // 1654023600
+                         $str_x = $model->tx;
+                   }
+
+                              // if ($model->update(true)) {
+                              //   echo "   № ".$model->id;
+                              // }
+                }
+          }
+
+    }
+
+    dd('');
+    echo "ALL is OK.... Расчет окончен. Ок.";
+    return 0;
+}
+
+
+
+
     /**
      *
      * -
