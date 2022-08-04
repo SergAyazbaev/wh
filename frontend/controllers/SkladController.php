@@ -629,7 +629,7 @@ class SkladController extends Controller
 
             //
             if (!empty($array[6]) && !is_numeric($array[6]) ) {
-                return ' array[6] . ШТРИХКОД не является числом ';
+                return ' array[6] . ШТРИХКОД ДОЛЖЕН БЫТЬ ЧИСЛОМ. Проверьте. ';
             }
 
 
@@ -637,21 +637,47 @@ class SkladController extends Controller
              * ПОИСК полного Двойника=Накладной
              * findDoubles_many_parameters       ($para_date, $para_akt, $wh_home_number, $para_vid, $para_barcode)
              */
-            if ( !empty($array[6]) &&  Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
-                $alert_mess = (
-                    "<br>" .
-                    "<b>Двойник Накладной АСУОП. Операция остановлена.</b>" .
-                    "<br> дата - " . $date_day .
-                    "<br> Акт № <b>" . $array[1] . "</b>" .
-                    "<br> Вид операции: " . $array[2] .
-                    "<br> ПЕ = " . $array[3] . ', ' . $array[4] . ', ' .
-                    //$array[5] .
-                    "<br> Bar_code = " . $array[6] .
-                    "<br> "
-                );
-                return $alert_mess;
+             if ( !empty($array[6]) &&  Sklad::findDoubles_many_parameters($date_day, $array[1], $wh_home_number, $array[2], $array[6])) {
+                 $alert_mess = (
+                     "<br>" .
+                     "<b>Двойник Накладной АСУОП. Операция остановлена.</b>" .
+                     "<br> дата - " . $date_day .
+                     "<br> Акт № <b>" . $array[1] . "</b>" .
+                     "<br> Вид операции: " . $array[2] .
+                     "<br> ПЕ = " . $array[3] . ', ' . $array[4] . ', ' .
+                     //$array[5] .
+                     "<br> Bar_code = " . $array[6] .
+                     "<br> "
+                 );
+                 return $alert_mess;
 
-            } else {
+             }
+             //
+             /**
+              * ПОИСК полного Двойника=Накладной
+              * findDoubles_many_parameters_without_barkode       ($para_date, $para_akt, $wh_home_number, $para_vid, $str_name)
+              */
+             if ( empty($array[6]) &&  Sklad::findDoubles_many_parameters_without_barkode($date_day, $array[1], $wh_home_number, $array[2], $array[5])) {
+
+                 $alert_mess = (
+                     "<br>" .
+                     "<b>Двойник Накладной АСУОП штрихкод-несодержащего оборудования. Операция остановлена.</b>" .
+                     "<br> дата - " . $date_day .
+                     "<br> Акт № <b>" . $array[1] . "</b>" .
+                     "<br> Вид операции: " . $array[2] .
+                     "<br> ПЕ = " . $array[3] . ', ' . $array[4] . ', ' .
+                     //$array[5] .
+                     "<br> Наименование = " . $array[5] .
+                     "<br> "
+                 );
+                 return $alert_mess;
+
+             }
+
+
+
+            //
+            if ( true ) {
 
                 /// Sklad
                 $sklad = Sklad::getSkladIdActive();    // Активный склад (_SESSION)
@@ -810,10 +836,8 @@ class SkladController extends Controller
                 // Примечание
                 $model->tx = 'Акт № ' . $array[1];
 
-                 // ddd($model);
 
-                //ddd($array);
-
+                //
                 if (isset($array[6]) && !empty($array[6])) {
                     // * GLOBAL. Приводит Все ШТРИХКОДЫ к нормальному ВИДУ
                     $barcode = MyHelpers::barcode_normalise($array[6]);
@@ -890,11 +914,8 @@ class SkladController extends Controller
 
                             //
                             if (empty( $fullArray_BY_barcode = Spr_globam_element::findArray_by_names_and_goup( trim($array[5]) ))) {
-                                return 'Отсутствует ШТРИХКОД. А должен быть!';
+                                return 'Отсутствует ШТРИХКОД. А ведь он ДОЛЖЕН БЫТЬ !';
                             };
-
-                            //  'Автомобильный стабилизатор напряжения''для терминалов NEW8210''c импульсной защитой';
-                            // ddd($fullArray_BY_barcode);
 
 
                             $array_pos = [

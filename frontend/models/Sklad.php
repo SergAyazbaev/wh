@@ -1624,6 +1624,72 @@ class Sklad extends ActiveRecord
     }
 
     /**
+     * ПОИСК полного Двойника=Накладной ПРИ УСЛОВИИ, ЧТО ЭТО устройство не баркодовое НЕ ИНТЕЛЕГЕНТ
+     * =
+     *
+     * @param $para_date
+     * @param $para_akt
+     * @param $wh_home_number
+     * @param $para_vid
+     * @param $para_barcode
+     * @return bool
+     */
+    public static function findDoubles_many_parameters_without_barkode($para_date, $para_akt, $wh_home_number, $para_vid,  $str_name )
+    {
+
+        // Подготовим две переменные даты dt_start && dt_stop
+        $dt_start_timestamp = date('d.m.Y 00:00:00', strtotime($para_date));
+        $dt_stop_timestamp = date('d.m.Y 23:59:59', strtotime($para_date));
+        // Подготовим две переменные даты dt_start && dt_stop FORMAT = Timestamp
+        $dt_start_timestamp = strtotime($dt_start_timestamp);
+        $dt_stop_timestamp = strtotime($dt_stop_timestamp);
+
+        ////              Акт демонтажа
+        if ($para_vid === 'Акт демонтажа') {
+            $xx = static::find()
+                ->where(
+                    ['AND',
+                        ["wh_home_number" => $wh_home_number],
+                        ['>=', "dt_create_timestamp", $dt_start_timestamp],
+                        ['<=', "dt_create_timestamp", $dt_stop_timestamp],
+                        ['like', "tx", $para_akt],//1221
+                        ['==', "array_tk_amort.name", $str_name],
+                        ['==', "array_tk_amort.intelligent", "0"],
+                    ]
+                )
+                ->asArray()
+                ->one();
+
+            // ddd($xx);
+        }
+
+        ////
+        if ($para_vid === 'Акт монтажа') {
+            $xx = static::find()
+                ->where(
+                    ['AND',
+                        ['>=', "dt_create_timestamp", $dt_start_timestamp],
+                        ['<=', "dt_create_timestamp", $dt_stop_timestamp],
+                        ['like', "tx", $para_akt],
+                        ['==', "array_tk_amort.name", $str_name],
+                        ['==', "array_tk_amort.intelligent", "0"],
+                    ]
+                )
+                ->asArray()
+                ->one();
+        }
+
+
+        if (isset($xx) && !empty($xx)) {
+            // Нашел
+            return true;
+        }
+        // No
+        return false;
+
+    }
+
+    /**
      * Связка с Таблицей  Sprwhelement
      * -
      *
