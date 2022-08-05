@@ -1583,12 +1583,13 @@ class Sklad extends ActiveRecord
             $xx = static::find()
                 ->where(
                     ['AND',
-                        ["wh_home_number" => $wh_home_number],
-                        ['>=', "dt_create_timestamp", $dt_start_timestamp],
-                        ['<=', "dt_create_timestamp", $dt_stop_timestamp],
-                        ['like', "tx", $para_akt],//1221
-                        ['=', "array_tk_amort.bar_code", $para_barcode],
-//                                ['=','wh_debet_element_name',$para_gos_or_bort],
+                          ["sklad_vid_oper" => "2"],
+                          ["wh_home_number" => $wh_home_number],
+                          ['>=', "dt_create_timestamp", $dt_start_timestamp],
+                          ['<=', "dt_create_timestamp", $dt_stop_timestamp],
+                          ['like', "tx", $para_akt],//1221
+                          ['==', "array_tk_amort.intelligent", "1"],
+                          ['=', "array_tk_amort.bar_code", $para_barcode],
                     ]
                 )
                 ->asArray()
@@ -1602,11 +1603,13 @@ class Sklad extends ActiveRecord
             $xx = static::find()
                 ->where(
                     ['AND',
-                        ['>=', "dt_create_timestamp", $dt_start_timestamp],
-                        ['<=', "dt_create_timestamp", $dt_stop_timestamp],
-                        ['like', "tx", $para_akt],
-                        ['=', "array_tk_amort.bar_code", $para_barcode],
-//                                ['=','wh_destination_element_name',$para_gos_or_bort],
+                          ["sklad_vid_oper" => "3"],
+                          ["wh_home_number" => $wh_home_number],
+                          ['>=', "dt_create_timestamp", $dt_start_timestamp],
+                          ['<=', "dt_create_timestamp", $dt_stop_timestamp],
+                          ['like', "tx", $para_akt],//1221
+                          ['==', "array_tk_amort.intelligent", "1"],
+                          ['=', "array_tk_amort.bar_code", $para_barcode],
                     ]
                 )
                 ->asArray()
@@ -1649,6 +1652,7 @@ class Sklad extends ActiveRecord
             $xx = static::find()
                 ->where(
                     ['AND',
+                        ["sklad_vid_oper" => "2"],
                         ["wh_home_number" => $wh_home_number],
                         ['>=', "dt_create_timestamp", $dt_start_timestamp],
                         ['<=', "dt_create_timestamp", $dt_stop_timestamp],
@@ -1668,6 +1672,8 @@ class Sklad extends ActiveRecord
             $xx = static::find()
                 ->where(
                     ['AND',
+                          ["sklad_vid_oper" => "3"],
+                        ["wh_home_number" => $wh_home_number],
                         ['>=', "dt_create_timestamp", $dt_start_timestamp],
                         ['<=', "dt_create_timestamp", $dt_stop_timestamp],
                         ['like', "tx", $para_akt],
