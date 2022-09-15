@@ -36,19 +36,24 @@ $menuItems = [
                 'label' => 'Sklad_Freak ',
                 'url' => ['/sklad_freak/update?id=5dba5afe80a063273c0040af&sklad=4229'],
             ],
-
             ['label' => '-------'],
 
 
             [
-                'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ',
-                'url' => ['/stat_balans/all_empty'],
+                'label' => 'Sklad.Admin. Write_zerro. Запишем 0 в количество строк ',
+                'url' => ['/stat_balans/write_zerro'],
             ],
+
+                        [
+                            'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ',
+                            'url' => ['/stat_balans/all_empty'],
+                        ],
 
             [
                 'label' => 'Sklad.Admin.ИСПРАВИТЬ Все ПУСТЫЕ',
                 'url' => ['/stat_balans/all_empty_remont'],
             ],
+
 
 
             ['label' => '-------'],
