@@ -1,6 +1,16 @@
 <?php
 
 
+function ddd($var = null)
+{
+
+    if (!isset($var)) {
+        return "<b>ddd()</b> - пустое значение на входе \n\n";
+    }
+
+    return '<pre>' . var_dump($var) . '</pre>';
+//    die();
+}
 
 
 require __DIR__ . '/../../vendor/autoload.php';

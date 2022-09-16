@@ -1586,19 +1586,31 @@ public function actionWrite_zerro()
         ['AND',
         // wh_home_number
         // ['>=',  'id', 86722], // 86722
-        ['==',  'wh_home_number', 4419], // 4419
+        // ['==',  'wh_home_number', 4419], // 4419
+
+        // ['==',  'wh_home_number', 4823], //4823
+        // ['>=',  'array_count_all', 1],
+
+        ['==',  'array_tk_amort', ''],  //array_tk_amort
+        ['==',  'array_tk', ''],        //array_tk
+        ['==',  'array_casual', ''],    //array_casual
+        //array_tk_amort
         ['>=',  'dt_create_timestamp', 1609400000], //!!! 1609441260 1609400000
-          ['like',  'tx', 'Акт'],
+        ['like',  'tx', 'Акт'],
               // 86755
       ]
     )
 
     ->orderBy('id ASC') // ->orderBy(['tx ASC'],['id ASC']) // ->limit(40000)
 
-    ;
+
     // ->asArray()
+
     //->all();
- // ddd(  $models);
+
+    ->count();
+
+ddd(  $models);
 
 
  $str_x = '';
@@ -1610,6 +1622,7 @@ public function actionWrite_zerro()
       $x2= ( empty( $model->array_tk[0]) || empty($model->array_tk) );
       $x3= ( empty( $model->array_casual[0]) || empty($model->array_casual) );
 
+
           if (  $x1 && $x2 && $x3 ) {
                 if (  (int)$model->array_count_all >= 1 ){
 
@@ -1620,11 +1633,11 @@ public function actionWrite_zerro()
                       else{
 
                         dd('');
-                        // echo "top    -----".$model->id;
-                        // echo "  ".$model->dt_create;
-                        // echo "  ".$model->dt_create_timestamp;
-                        // echo "  ".$model->sklad_vid_oper;
-                        // echo "  ".$model->tx;
+                        echo "top    -----".$model->id;
+                        echo "  ".$model->dt_create;
+                        echo "  ".$model->dt_create_timestamp;
+                        echo "  ".$model->sklad_vid_oper;
+                        echo "  ".$model->tx;
                       }
 
 
@@ -1643,7 +1656,8 @@ public function actionWrite_zerro()
 
     }
 
-    dd('');
+
+    ddd(123);
     echo "ALL is OK.... Расчет окончен. Ок.";
     return 0;
 }

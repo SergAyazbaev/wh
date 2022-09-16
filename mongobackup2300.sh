@@ -6,7 +6,7 @@
 # Set the following variables as per your requirement
 #=====================================================================
 # Database Name to backup
-MONGO_DATABASE="wh_prod"
+MONGO_DATABASE="wh_kar"
 # Database host name
 MONGO_HOST="127.0.0.1"
 # Database port
@@ -21,7 +21,7 @@ BACKUPS_DIR="/var/www/backup/2300_"$MONGO_DATABASE
 # Authentication database name
 ####DBAUTHDB="admin"
 # Days to keep the backup
-DAYSTORETAINBACKUP="25"
+DAYSTORETAINBACKUP="125"
 #=====================================================================
 
 TIMESTAMP=`date +%F-%H%M`
@@ -39,8 +39,6 @@ fi;
 ##### mongodump -d $MONGO_DATABASE --username $DBUSERNAME --password $DBPASSWORD --authenticationDatabase $DBAUTHDB
 
 mongodump -d $MONGO_DATABASE
-
-
 
 mongoexport --db $MONGO_DATABASE --collection sklad_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_inventory.json
 mongoexport --db $MONGO_DATABASE --collection sklad_past_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_past_inventory.json
@@ -85,6 +83,8 @@ mongoexport --db $MONGO_DATABASE --collection mts_montage --out $BACKUPS_DIR/$BA
 mongoexport --db $MONGO_DATABASE --collection rem_decision --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_decision.json
 mongoexport --db $MONGO_DATABASE --collection rem_history --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_history.json
 mongoexport --db $MONGO_DATABASE --collection rem_nepoladki --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_nepoladki.json
+
+
 
 
 

@@ -5,7 +5,7 @@
 # Set the following variables as per your requirement
 #=====================================================================
 # Database Name to backup
-MONGO_DATABASE="wh_prod"
+MONGO_DATABASE="wh_kar"
 # Database host name
 MONGO_HOST="127.0.0.1"
 # Database port
@@ -38,6 +38,7 @@ fi;
 ##### mongodump -d $MONGO_DATABASE --username $DBUSERNAME --password $DBPASSWORD --authenticationDatabase $DBAUTHDB
 
 mongodump -d $MONGO_DATABASE
+
 
 
 mongoexport --db $MONGO_DATABASE --collection sklad_inventory --out  $BACKUPS_DIR/$BACKUP_NAME/json/sklad_inventory.json
@@ -83,8 +84,6 @@ mongoexport --db $MONGO_DATABASE --collection mts_montage --out $BACKUPS_DIR/$BA
 mongoexport --db $MONGO_DATABASE --collection rem_decision --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_decision.json
 mongoexport --db $MONGO_DATABASE --collection rem_history --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_history.json
 mongoexport --db $MONGO_DATABASE --collection rem_nepoladki --out $BACKUPS_DIR/$BACKUP_NAME/json/rem_nepoladki.json
-
-
 
 
 ####
