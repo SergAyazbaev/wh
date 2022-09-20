@@ -1496,35 +1496,67 @@ class Stat_balansController extends Controller
         $model = Sklad::find()
             ->where([
                 'AND',
-                ['sklad_vid_oper' => '3'], //RASHOD
-                ['=', 'wh_home_number', 4419],
-//                ['>=', 'id', 39620] ///
-            ]);
+                // ['sklad_vid_oper' => '3'], //RASHOD
+                // ['=', 'wh_home_number', 4419], /// это по АЛМА-АТЕ
+                ['==', 'wh_home_number', 8], /// это по АЛМА-АТЕ
+                //array_count_all
+                ['==', 'array_count_all', 1], /// это по АЛМА-АТЕ
+
+                 ['==',  'array_tk_amort', [null] ],  //array_tk_amort
+
+                // ['==',  'array_tk_amort', ''],  //array_tk_amort
+                // ['==',  'array_tk', ''],        //array_tk
+                // ['==',  'array_casual', ''],    //array_casual
+                //array_tk_amort
+                // ['>=',  'dt_create_timestamp', 1609400000], //!!! 1609441260 1609400000
+                // ['like',  'tx', 'Акт'],
+
+                // ['>=', 'id', 39620] ///
+
+            ])   ;
 
         //
+        $x=0;
         foreach ($model->each() as $item) {
+          $x++;
 
-            if (!isset($item->dt_create_timestamp) || empty($item->dt_create_timestamp)) {
-                ddd($item);
-            }
+          if(  $item->array_tk_amort==[null] ){
+            print_r( $item -> id) ;
+            echo "  ";
+            print_r( $item -> tx) ;
+            echo "<br>";
+          }
 
-            $item->dt_create_timestamp = $item->dt_create_timestamp + 1;
-            $item->dt_create = date('d.m.Y H:i:s', $item->dt_create_timestamp);
 
-            if (!$item->save(true)) {
-                ddd($item->errors);
-            }
-            //ddd($item);
+            // if (!isset($item->dt_create_timestamp) || empty($item->dt_create_timestamp)) {
+              //  ddd($item);
+            // }
+
+            // $item->dt_create_timestamp = $item->dt_create_timestamp + 1;
+            // $item->dt_create = date('d.m.Y H:i:s', $item->dt_create_timestamp);
+
+            // dd($item->id);
+            // echo "<br>";
+
+
+            // if ($item->save(true)) {
+            //   print_r( $item -> id) ;
+            //   echo "<br>";
+            // }
+            // ddd($item);
         }
 
+        dd($x);
+        ddd("end111");
 
-//        return $this->render(
-//            'index_into', [
-//            'DataProvider_pihod_amprt' => $DataProvider_pihod_amprt,
-//            'model_pihod_amprt' => $array_pihod_amprt,
-//            'spr_full_name' => $spr_full_name,
-//            //            'id_sklad' => $sklad_id,
-//        ]);
+
+       // return $this->render(
+       //     'index_into', [
+       //     'DataProvider_pihod_amprt' => $DataProvider_pihod_amprt,
+       //     'model_pihod_amprt' => $array_pihod_amprt,
+       //     'spr_full_name' => $spr_full_name,
+       //     //            'id_sklad' => $sklad_id,
+       // ]);
     }
 
     /**
@@ -1592,8 +1624,8 @@ public function actionWrite_zerro()
         // ['>=',  'array_count_all', 1],
 
         ['==',  'array_tk_amort', ''],  //array_tk_amort
-        ['==',  'array_tk', ''],        //array_tk
-        ['==',  'array_casual', ''],    //array_casual
+        // ['==',  'array_tk', ''],        //array_tk
+        // ['==',  'array_casual', ''],    //array_casual
         //array_tk_amort
         ['>=',  'dt_create_timestamp', 1609400000], //!!! 1609441260 1609400000
         ['like',  'tx', 'Акт'],

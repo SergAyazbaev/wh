@@ -40,12 +40,12 @@ $menuItems = [
 
 
             [
-                'label' => 'Sklad.Admin. Write_zerro. Запишем 0 в количество строк ',
+                'label' => 'Sklad.Admin. Write_zerro. Запишем 0 в кол-во строк ',
                 'url' => ['/stat_balans/write_zerro'],
             ],
 
                         [
-                            'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ',
+                            'label' => 'Sklad.Admin.Находим Все ПУСТЫЕ накладные по всей базе',
                             'url' => ['/stat_balans/all_empty'],
                         ],
 

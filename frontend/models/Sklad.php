@@ -4042,7 +4042,7 @@ class Sklad extends ActiveRecord
         ];
 
 
-        //        ddd($out_amort);
+               ddd($out_amort);
         //        ddd($xx);
 
         return $out_amort;

@@ -158,8 +158,3 @@ class posttz extends Tz
     }
 
 }
-
-
-
-
-
