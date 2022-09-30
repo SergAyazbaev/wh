@@ -59,12 +59,13 @@ phpunit.phar
 /frontend/tests
 /frontend/web/jic____
 
-
+/frontend/web/index*.php
+/frontend/web/robot*.*
 
 /mobile/runtime/
 /crm_dispatcher/
 /docs/
 
 
-# /mongobackup.sh
+mongobackup*.sh
 /json

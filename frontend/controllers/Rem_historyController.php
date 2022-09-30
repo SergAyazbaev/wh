@@ -811,6 +811,7 @@ class Rem_historyController extends Controller
 
 
     /**
+     *  Диаграмма Круговая
      *  REM. Статистика. Неисправности (%) ЗА НЕДЕЛЮ
      */
     public function actionStat_decision()
