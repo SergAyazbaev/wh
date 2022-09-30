@@ -815,45 +815,35 @@ class Rem_historyController extends Controller
      *  Диаграмма Круговая
      *  REM. Статистика. Неисправности (%) ЗА НЕДЕЛЮ
      */
-    public function actionStat_decision()
+    public function actionStat_decision($long_time = ' -7 days')
     {
 
         ///
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
 
-        $uniq_arr = Rem_history::ArrayUniq_decision('now');
+        $uniq_arr = Rem_history::ArrayUniq_decision('now', $long_time ); //$dt_create='now ', $period_str = ' -30 days'
 
-        // dd($uniq_arr);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
-        // ddd($uniq_arr);
 
 
-        $arr2 = [];
-        ///
-        foreach ($uniq_arr as $key_id => $item_id) {
-          // $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
-          $item_a = $item_id;
-            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a);
-        }
-
-        //$item_a=mb_convert_case($item, MB_CASE_UPPER, 'UTF-8');
-        //ddd($arr2);
+      //  ddd($uniq_arr);
 
         ///
-        asort($arr2);
+        asort($uniq_arr);
 
         $data = [];
         ///
-        foreach ($arr2 as $key_name => $item) {
+        foreach ($uniq_arr as $key_name => $item) {
             $data [] =
                 [
                     'name' => '' . $key_name . ' - ' . $item . '',
                     'y' => $item
                 ];
         }
-        //ddd($arr2);
+
+        //ddd($data);
 
 
         return $this->render('stat/index_decision', [
@@ -865,41 +855,33 @@ class Rem_historyController extends Controller
     /**
      *  REM.Круговая диаграмма. Статистика. Неисправности (%) ЗА МЕСЯЦ
      */
-    public function actionStat_decision_month()
+    public function actionStat_decision_month($long_time = ' -30 days')
     {
 
         ///
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
-        $uniq_arr = Rem_history::ArrayUniq_decision('now ', ' -30 days');
+        $uniq_arr = Rem_history::ArrayUniq_decision('now ', $long_time);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
 
-        $arr2 = [];
-        ///
-        foreach ($uniq_arr as $key_id => $item_id) {
-            // $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
-            $item_a = $item_id;
-            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, ' -30 days');
-        }
+      //  ddd( $uniq_arr );
 
-          // ddd($arr2);
+
+
         ///
-        asort($arr2);
+        asort($uniq_arr);
 
         $data = [];
         ///
-        foreach ($arr2 as $key_name => $item) {
+        foreach ($uniq_arr as $item  => $key_name) {
             $data [] =
                 [
-                    'name' => '' . $key_name . ' - ' . $item . '',
-                    'y' => $item
+                    'name' => '' . $item . ' - ' . $key_name . '',
+                    'y' => $key_name
                 ];
         }
-
-       // ddd($data);
-//        ddd($arr2);
-
+       //ddd($data);
 
         return $this->render('stat/index_decision_month', [
             'data' => $data

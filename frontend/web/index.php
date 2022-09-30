@@ -47,7 +47,6 @@ function dd($var)
     echo "<pre>";
     print_r($var);
     echo "<pre>";
-    die();
 }
 
 defined('YII_DEBUG') or define('YII_DEBUG', false);
