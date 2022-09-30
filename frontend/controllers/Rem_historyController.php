@@ -904,20 +904,22 @@ class Rem_historyController extends Controller
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
+        //ddd( $uniq_arr);
 
-        $arr2 = [];
-        ///
-        foreach ($uniq_arr as $key_id => $item_id) {
-            $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
-            $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, '01.10.2020  00:00:01 ', ' -1 month');
-        }
+
+        // $arr2 = [];
+        // ///
+        // foreach ($uniq_arr as $key_id => $item_id) {
+        //     $item_a = mb_convert_case($item_id, MB_CASE_UPPER, 'UTF-8');
+        //     $arr2[$item_a] = Rem_history::countDecision_by_six_days($item_a, '01.10.2020  00:00:01 ', ' -1 month');
+        // }
 
         ///
-        asort($arr2);
+        asort($uniq_arr);
 
         $data = [];
         ///
-        foreach ($arr2 as $key_name => $item) {
+        foreach ($uniq_arr as $key_name => $item) {
             $data [] =
                 [
                     'name' => '' . $key_name . ' - ' . $item . '',

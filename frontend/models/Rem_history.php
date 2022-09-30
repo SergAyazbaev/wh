@@ -412,6 +412,7 @@ class Rem_history extends ActiveRecord
             ->where(['AND',
                 ['>=', 'dt_create_timestamp', $dt_start],
                 ['<=', 'dt_create_timestamp', $dt_stop],
+                ['!=', 'decision', null],
                 ['!=', 'decision', '']
             ])
             ->distinct('decision');
