@@ -66,5 +66,5 @@ phpunit.phar
 /crm_dispatcher/
 
 
-mongobackup.sh
-mongobackup2300.sh
+/mongobackup.sh
+/mongobackup2300.sh
