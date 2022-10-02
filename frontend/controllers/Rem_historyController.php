@@ -821,14 +821,19 @@ class Rem_historyController extends Controller
         ///
         //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
 
-        $uniq_arr = Rem_history::ArrayUniq_decision('now', $long_time ); //$dt_create='now ', $period_str = ' -30 days'
+      // ArrayAll_decision
+      $all_arr = Rem_history::ArrayAll_decision('now', $long_time ); //$dt_create='now ', $period_str = ' -30 days'
+      // dd($all_arr);
 
+      // Получить все кусочки в отдельную строку
+      $uniq_arr = Rem_history::ArrayUniq_decision( $all_arr );
+      // ddd($uniq_arr);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
 
 
-      //  ddd($uniq_arr);
+      // ddd($uniq_arr);
 
         ///
         asort($uniq_arr);
@@ -857,10 +862,14 @@ class Rem_historyController extends Controller
      */
     public function actionStat_decision_month($long_time = ' -30 days')
     {
-
         ///
-        //        $decision_all = Rem_history::countDecision_all('now');  // 100%  - 36
-        $uniq_arr = Rem_history::ArrayUniq_decision('now ', $long_time);
+        // ArrayAll_decision
+        $all_arr = Rem_history::ArrayAll_decision('now', $long_time ); //$dt_create='now ', $period_str = ' -30 days'
+        // dd($all_arr);
+
+        // Получить все кусочки в отдельную строку
+        $uniq_arr = Rem_history::ArrayUniq_decision( $all_arr );
+        // ddd($uniq_arr);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
         $uniq_arr = Rem_history::ArrayTranslator($uniq_arr);
@@ -899,7 +908,12 @@ class Rem_historyController extends Controller
         $dt_stop = date('d.m.Y ', strtotime('01.10.2020 00:00:01'));
 
         //last day of -2 month 23:59:59 '
-        $uniq_arr = Rem_history::ArrayUniq_decision('01.10.2020  00:00:01 ', ' -1 month');
+        $all_arr = Rem_history::ArrayAll_decision('01.10.2020  00:00:01 ', ' -1 month');
+        // dd($all_arr);
+
+         // Получить все кусочки в отдельную строку
+         $uniq_arr = Rem_history::ArrayUniq_decision( $all_arr );
+         // ddd($uniq_arr);
 
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями

@@ -393,6 +393,27 @@ class Rem_history extends ActiveRecord
         return $arr;
     }
 
+/*All*/
+    public static function ArrayAll_decision($dt_create='now ', $period_str = ' -30 days')
+    {
+        $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
+        $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
+         // dd(date('d.m.Y',$dt_start));
+         // ddd(date('d.m.Y',$dt_stop));
+
+        return self::find()
+        ->select(['id', 'decision'])
+            ->where(['AND',
+                  ['>=', 'dt_create_timestamp', $dt_start],
+                  ['<=', 'dt_create_timestamp', $dt_stop],
+                  // ['!=', 'decision', null],
+                  // ['!=', 'decision', '']
+            ])
+           ->asArray()
+            ->orderBy(dt_create_timestamp)
+            ->all();
+    }
+
     /**
      * Возвращает массив с неисправностями
      * -
@@ -401,21 +422,21 @@ class Rem_history extends ActiveRecord
      * @param string $period_str
      * @return array
      */
-    public static function ArrayUniq_decision($dt_create='now ', $period_str = ' -30 days')
+    public static function ArrayUniq_decision($uniq_arr=[])
     {
-        $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
-        $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
-        // dd(date('d.m.Y',$dt_start));
-        // dd(date('d.m.Y',$dt_stop));
+      $arr_result=[];
+      $arr_str=[];
 
-        return self::find()
-            ->where(['AND',
-                ['>=', 'dt_create_timestamp', $dt_start],
-                ['<=', 'dt_create_timestamp', $dt_stop],
-                ['!=', 'decision', null],
-                ['!=', 'decision', '']
-            ])
-            ->distinct('decision');
+      foreach ($uniq_arr as $key => $value) {
+        if ( $value['decision']!='' ){
+          $arr_str = explode('.',$value['decision']);
+          foreach ($arr_str as $key => $value) {
+            array_push($arr_result,trim($value));
+          }
+          unset($arr_str);
+        }
+      }
+      return $arr_result;
     }
 
     /**
