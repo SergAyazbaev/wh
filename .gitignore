@@ -1,4 +1,4 @@
-*.sh
+**.sh
 
 # yii console commands
 /yii_test
