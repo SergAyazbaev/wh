@@ -4,7 +4,7 @@
 #=====================================================================
 # Set the following variables as per your requirement
 #=====================================================================
-# Database Name to backup
+# Database Name to backup kar || prod
 MONGO_DATABASE="wh_prod"
 # Database host name
 MONGO_HOST="127.0.0.1"
