@@ -1,3 +1,5 @@
+*.sh
+
 # yii console commands
 /yii_test
 /yii_test.bat
