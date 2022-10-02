@@ -64,8 +64,7 @@ phpunit.phar
 
 /mobile/runtime/
 /crm_dispatcher/
-/docs/
 
 
-mongobackup*.sh
-/json
+mongobackup.sh
+mongobackup2300.sh
