@@ -77,8 +77,9 @@ class Rem_historyController extends Controller
             Sklad::setSort_param($para_sort);
 
             #PARA BETWEEN
-            Sklad::setBetween_param($para_between);
+            Sklad::setBetween_param($para_between);  ///'27.09.2022 - 03.10.2022'
         }
+
 
 
         ///

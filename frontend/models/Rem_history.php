@@ -396,10 +396,10 @@ class Rem_history extends ActiveRecord
 /*All*/
     public static function ArrayAll_decision($dt_create='now ', $period_str = ' -30 days')
     {
-        $dt_start = strtotime(date('d.m.Y 00:00:00', strtotime($dt_create . $period_str)));
+        $dt_start = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create . $period_str)));
         $dt_stop = strtotime(date('d.m.Y 23:59:59', strtotime($dt_create)));
-         // dd(date('d.m.Y',$dt_start));
-         // ddd(date('d.m.Y',$dt_stop));
+          // dd(date('d.m.Y',$dt_start));
+          // ddd(date('d.m.Y',$dt_stop));
 
         return self::find()
         ->select(['id', 'decision'])
@@ -473,7 +473,7 @@ class Rem_history extends ActiveRecord
 
          return $array3;
      }
-  
+
 
     /**
      * Возвращает количество снятых УСРОЙСТВ за день, одним МТС
