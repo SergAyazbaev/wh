@@ -447,33 +447,33 @@ class Rem_history extends ActiveRecord
      * @param $array
      * @return array
      */
-    static function ArrayTranslator($array)
-    {
+     static function ArrayTranslator($array)
+     {
 
-        $array3 = [];
-        foreach ($array as $item_arr) {
-            $res = explode('.', $item_arr);
-            foreach ($res as $re2) {
-                $str_up = mb_convert_case(trim($re2), MB_CASE_UPPER, "UTF-8");
-                if (is_numeric($array3[trim($str_up)]) ){
-                  $array3[trim($str_up)] ++;
-                }
-                else{
-                  $array3[trim($str_up)] = 1;
-                }
-            }
-        }
+         $array3 = [];
+         foreach ($array as $item_arr) {
+             $res = explode('.', $item_arr);
+             foreach ($res as $re2) {
+                 $str_up = mb_convert_case(trim($re2), MB_CASE_UPPER, "UTF-8");
+                 if (is_numeric($array3[trim($str_up)]) ){
+                   $array3[trim($str_up)] ++;
+                 }
+                 else{
+                   $array3[trim($str_up)] = 1;
+                 }
+             }
+         }
 
-        // ddd($array3);
+         // ddd($array3);
 
-        // // Пустышки удаляет из массива
-        // $array2 = array_filter($array2);
-        // // Двойники удаляет из массива
-        // $array2 = array_unique($array2);
+         // // Пустышки удаляет из массива
+         // $array2 = array_filter($array2);
+         // // Двойники удаляет из массива
+         // $array2 = array_unique($array2);
 
-        return $array3;
-    }
-
+         return $array3;
+     }
+  
 
     /**
      * Возвращает количество снятых УСРОЙСТВ за день, одним МТС

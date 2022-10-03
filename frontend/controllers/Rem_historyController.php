@@ -344,14 +344,18 @@ class Rem_historyController extends Controller
             ///
             ///  Справочная информация на основе соего же поля
             $spr_decision_all = Rem_history::findDecision_all(); //findDecision_all
-            //        ddd($spr_decision_all);
+            // dd($spr_decision_all);
+
 
             ///Возвращает массив с БОЛЕЕ подробными неисправностями
-            $spr_decision_ids = Rem_history::ArrayTranslator($spr_decision_all);
+            $spr_decision_ids = array_keys(Rem_history::ArrayTranslator($spr_decision_all));
+            //
+            sort($spr_decision_ids, SORT_ASC);
+
             $spr_decision_all = [];
 
+//ddd($spr_decision_ids);
 
-            sort($spr_decision_ids, SORT_ASC);
 
             // Первая буква. Сделать Заглавной
             foreach ($spr_decision_ids as $item) {
@@ -435,7 +439,7 @@ class Rem_historyController extends Controller
                         //        ddd($spr_decision_all);
 
                         ///Возвращает массив с БОЛЕЕ подробными неисправностями
-                        $spr_decision_ids = Rem_history::ArrayTranslator($spr_decision_all);
+                        $spr_decision_ids = array_keys(Rem_history::ArrayTranslator($spr_decision_all));
                         $spr_decision_all = [];
 
 
@@ -963,6 +967,8 @@ class Rem_historyController extends Controller
         //ddd($spr_decision_all);
 
         ///Возвращает массив с БОЛЕЕ подробными неисправностями
+        ddd(1111);
+        ///         $spr_decision_ids = array_keys(Rem_history::ArrayTranslator($spr_decision_all));
         $spr_decision_ids = Rem_history::ArrayTranslator($spr_decision_all);
 
         unset($spr_decision_all);
