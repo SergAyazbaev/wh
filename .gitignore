@@ -1,5 +1,3 @@
-*.sh
-
 # yii console commands
 /yii_test
 /yii_test.bat
@@ -66,7 +64,8 @@ phpunit.phar
 
 /mobile/runtime/
 /crm_dispatcher/
+/docs/
 
 
-/mongobackup.sh
-/mongobackup2300.sh
+mongobackup*.sh
+/json

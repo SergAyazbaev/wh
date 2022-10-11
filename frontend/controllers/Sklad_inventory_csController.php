@@ -418,7 +418,8 @@ class Sklad_inventory_csController extends Controller
                 // ddd(Yii::$app->request->post());
                 // ddd($model->dt_create_timestamp);
 
-                //ddd($model->wh_destination);
+                // ddd($model->wh_destination);
+                // ddd($model);
 
 
                 /// На какую дату ищем. (DeadLine)
@@ -452,15 +453,17 @@ class Sklad_inventory_csController extends Controller
                 $spr_elem_intelligent = Spr_globam_element::id_to_intelligent(); /// intelligent
                 //	$spr_elem_am  = Spr_globam::name_am_parent(); // ddd($spr_elem_parent);
 
+                // ddd($spr_elem);
 
-//                ddd($para_post);
+                // ddd($para_post);
 
                 //////////////////////
                 /// Parser основного куска таблицы
                 //////////////////////
                 $array = explode("\r\n", trim($para_post['Sklad_inventory_cs']['add_text_to_inventory_am1']));
 
-                //ddd($array);
+
+                 // ddd($array);
 
                 global $xx_str;
                 $sum_bus = 0;
@@ -583,7 +586,12 @@ class Sklad_inventory_csController extends Controller
                             'bar_code' => MyHelpers::barcode_normalise($item_str[2]),
                             'intelligent' => (int)(isset($spr_elem_intelligent[$key_key]) ? $spr_elem_intelligent[$key_key] : 0),
                         ];
-                    }
+
+                        if(!$key_key){
+                          echo '<b> ==== Отсутствует один из ключей === </b> '. $array_tk[$number_AP][$number_PE][$key]['wh_tk_element_name'];
+                          ddd('Stop');
+                        }
+                      }
 
                     //
                     if (!isset($array_tk[$number_AP][$number_PE])) {
@@ -602,7 +610,7 @@ class Sklad_inventory_csController extends Controller
                 if (!isset($array_tk)) {
                     $array_tk[$number_AP][$number_PE] = [];
                 }
-                //ddd($array_tk);     //пусто
+                // ddd($array_tk);     //пусто
 
                 /////////////////////////////
                 $x = 1;
@@ -1526,7 +1534,7 @@ class Sklad_inventory_csController extends Controller
 
         $foot_str = '
 
-           
+
         ';
 
         //$mpdf->SetFooter($foot_str );
@@ -1631,7 +1639,7 @@ class Sklad_inventory_csController extends Controller
                  <div class="footer_right" >
                        <div class="man_sign">Получил</div>
                  </div>
-           </div>           
+           </div>
         ';
 
         //$mpdf->SetFooter($foot_str );
