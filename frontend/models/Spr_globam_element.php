@@ -174,14 +174,14 @@ class Spr_globam_element extends ActiveRecord
     }
 
     /**
-     * Возвращает массив (ИД + parent_id)
+     * Возвращает массив (ИД + parent_id)/ Соответствие Ид парентуИД
      * -
      *
      * @return array
      */
     public static function id_to_parent()
     {
-        return ArrayHelper::map(static::find()->all(), 'id', 'parent_id');
+        return ArrayHelper::map(static::find()->orderBy('id')->all(), (string) 'id',(string) 'parent_id');
     }
 
     /**

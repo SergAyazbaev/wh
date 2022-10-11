@@ -419,7 +419,7 @@ class Sklad_inventory_csController extends Controller
                 // ddd($model->dt_create_timestamp);
 
                 // ddd($model->wh_destination);
-                // ddd($model);
+                 // ddd($model);
 
 
                 /// На какую дату ищем. (DeadLine)
@@ -565,14 +565,20 @@ class Sklad_inventory_csController extends Controller
 //                    ddd($item_str);13 => 'Fastener for CVB24 (Крепление для CVB24)'
 
 
-                    // ddd($item_str);
+                     // dd($item_str);
 
 
                     //// MINUS -1
                     if ((int)$item_str[3] <= 0) {
+                      // if ($spr_elem_parent){
+                      //   ddd($spr_elem_parent);
+                      // }
+
                         $array_tk[$number_AP][$number_PE][] = [
 
-                            'wh_tk_amort' => (isset($spr_elem_parent[$key]) ? $spr_elem_parent[$key] : 7),
+                          // 'wh_tk_amort' => (isset($spr_elem_parent[$key]) ? $spr_elem_parent[$key] : 7),
+                          'wh_tk_amort' =>  $spr_elem_parent [ (string) $key_key ] ,
+
                             //'wh_tk_amort' => $spr_elem_parent[$key],
                             'wh_tk_element' => $key_key,
                             // Номер ИД
@@ -588,10 +594,10 @@ class Sklad_inventory_csController extends Controller
                         ];
 
                         if(!$key_key){
-                          echo '<b> ==== Отсутствует один из ключей === </b> '. $array_tk[$number_AP][$number_PE][$key]['wh_tk_element_name'];
-                          ddd('Stop');
+                          echo '==== Отсутствует один из ключей ==='. $array_tk[$number_AP][$number_PE][$key]['wh_tk_element_name'];
+                          ddd($key);
                         }
-                      }
+                    }
 
                     //
                     if (!isset($array_tk[$number_AP][$number_PE])) {
@@ -610,6 +616,9 @@ class Sklad_inventory_csController extends Controller
                 if (!isset($array_tk)) {
                     $array_tk[$number_AP][$number_PE] = [];
                 }
+
+                // dd($spr_elem_parent);
+
                 // ddd($array_tk);     //пусто
 
                 /////////////////////////////
