@@ -101,7 +101,7 @@ class GlobalamelementController extends Controller
             $model->parent_id = (int)$model->parent_id;
             $model->name = trim($model->name);
             $model->short_name = trim($model->short_name);
-            
+
 
 
             if ($model->save()){
@@ -129,11 +129,11 @@ class GlobalamelementController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+
             $model->id = (integer)$model->id;
             $model->parent_id = (integer)$model->parent_id;
             $model->name = trim($model->name);
             $model->short_name = trim($model->short_name);
-
 
             $model->dt_update = date('d.m.Y H:i:s', strtotime('now'));
             $model->user_ip = Yii::$app->request->getUserIP();
