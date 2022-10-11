@@ -101,7 +101,8 @@ class GlobalamelementController extends Controller
             $model->parent_id = (int)$model->parent_id;
             $model->name = trim($model->name);
             $model->short_name = trim($model->short_name);
-    
+            
+
 
             if ($model->save()){
                 return $this->redirect(['/globalamelement/return_to_refer']);
