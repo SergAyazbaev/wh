@@ -633,11 +633,13 @@ class Stat_svodController extends Controller
 
             $dataProvider->pagination = ['pageSize' => -1];
 
+ // dd(2222);
+
             //* Раскрытие Накладных внутри таблицы по позициям
             $data_array = Sklad_cs_past_inventory::in_model_out_array($dataProvider->getModels());
 
 //            ddd($dataProvider->getModels());
-//            ddd($data_array);
+           // ddd($data_array);
 
             $this->render(
                 'print/print_excel_pe', [

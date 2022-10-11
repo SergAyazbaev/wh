@@ -538,7 +538,7 @@ class Sklad_cs_past_inventory extends ActiveRecord
      */
     static function in_model_out_array($model)
     {
-        // ddd($model);
+         // ddd($model);
 
         //        if(is_object( $model)){
         //            ddd(ArrayHelper::map(  $model,'id',"name"));
@@ -548,63 +548,63 @@ class Sklad_cs_past_inventory extends ActiveRecord
 
         $spr_globam_top = ArrayHelper::map(Spr_globam::find()->all(), 'id', 'name');
         $spr_globam_elem = ArrayHelper::map(Spr_globam_element::find()->all(), 'id', 'name');
-
         $spr_glob_top = ArrayHelper::map(Spr_glob::find()->all(), 'id', 'name');
         $spr_glob_elem = ArrayHelper::map(Spr_glob_element::find()->all(), 'id', 'name');
 
-        //ddd($spr_glob_elem);
-
-
+        //
         foreach ($model as $item) {
-            //            ddd($item['wh_home_number']);
-            //            ddd($item);
-            //ddd($item->array_tk_amort);
+           //ddd($item); // item -> wh_destination
+                       // item -> wh_destination_element
 
+            // Если есть АМОРТ блок
             if (isset($item->array_tk_amort) && !empty($item->array_tk_amort)) {
+
                 foreach ($item->array_tk_amort as $item_amort) {
-                    //ddd($item_amort);
+                      // dd($item_amort);
+
+                    // 'wh_tk_amort' => 8
+                    //  'wh_tk_element' => 1
+                    //  'wh_tk_element_name' => 'Ruptela ГЛОНАСС/GPS/GSM терминал FM-Eсо4 Light T'
+                    //  'ed_izmer' => 1
+                    //  'ed_izmer_num' => 1
+                    //  'bar_code' => '869943057832173'
+                    //  'intelligent' => 1
 
                     $out_array[] = [
                         'id' => $item['id'],
                         'sklad_vid_oper' => $item['sklad_vid_oper'],
                         'wh_home_number' => $item['wh_home_number'],
-                        'wh_debet_top' => $item['wh_debet_top'],
+                        'wh_debet_top' =>$item['wh_destination'] , // $item['wh_debet_top'],
+                        'wh_debet_element' => $item['wh_destination_element'],
+
                         'wh_debet_name' => $item['wh_debet_name'],
-                        'wh_debet_element' => $item['wh_debet_element'],
                         'wh_debet_element_name' => $item['wh_debet_element_name'],
                         'wh_destination' => $item['wh_destination'],
                         'wh_destination_name' => $item['wh_destination_name'],
                         'wh_destination_element' => $item['wh_destination_element'],
                         'wh_destination_element_name' => $item['wh_destination_element_name'],
                         'sklad_vid_oper_name' => $item['sklad_vid_oper_name'],
-                        'tz_id' => $item['tz_id'],
-                        //                    'tz_name'=>         $item['tz_name'],
-                        //                    'tz_date'=>         $item['tz_date'],
-                        //                    'dt_deadline'=>     $item['dt_deadline'],
 
                         'dt_create' => $item['dt_create'],
                         'dt_update' => $item['dt_update'],
-                        //                    'user_ip'=>$item['user_ip'],
-                        //                    'user_id'=>$item['user_id'],
-                        //                    'user_name'=>$item['user_name'],
-                        //                    'update_user_id'=>$item['update_user_id'],
-                        //                    'update_user_name'=>$item['update_user_name'],
-                        //                    'user_group_id'=>$item['user_group_id'],
-                        'array_bus' => $item['array_bus'],
-                        'array_count_all' => $item['array_count_all'],
-                        'dt_transfered_date' => $item['dt_transfered_date'],
-                        //                    'dt_transfered_user_id'=>$item['dt_transfered_user_id'],
-                        //                    'dt_transfered_user_name'=>$item['dt_transfered_user_name'],
+
+                        // 'array_bus' => $item['array_bus'],
+                        // 'array_count_all' => $item['array_count_all'],
+                        // 'dt_transfered_date' => $item['dt_transfered_date'],
 
                         'wh_tk_amort' => (isset($spr_globam_top[$item_amort['wh_tk_amort']]) ?
-                            $spr_globam_top[$item_amort['wh_tk_amort']] : ""),
+                            $spr_globam_top[$item_amort['wh_tk_amort']] : "NOT FIND"),
                         'wh_tk_element' => (isset($spr_globam_elem[$item_amort['wh_tk_element']]) ?
-                            $spr_globam_elem[$item_amort['wh_tk_element']] : ""),
-                        'ed_izmer' => (isset($item_amort['ed_izmer']) ? $item_amort['ed_izmer'] : 0),
+                            $spr_globam_elem[$item_amort['wh_tk_element']] : "NOT FIND"),
+
+                        // 'wh_tk_amort' => $item_amort['wh_tk_amort'] ,
+                        // 'wh_tk_element' => $item_amort['wh_tk_element'] ,
+
+                            'ed_izmer' => (isset($item_amort['ed_izmer']) ? $item_amort['ed_izmer'] : 0),
                         'ed_izmer_num' => (isset($item_amort['ed_izmer_num']) ?
                             $item_amort['ed_izmer_num'] : 0),
                         'bar_code' => (isset($item_amort['bar_code']) ? $item_amort['bar_code'] : ''),
-                        //'name'=>$item_amort['name'],
+
                     ];
 
 
@@ -628,8 +628,8 @@ class Sklad_cs_past_inventory extends ActiveRecord
                 ];
 
             }
-
-            // ddd($out_array);
+ // dd(333);
+              // ddd($out_array);
 
 
             unset($item_amort);
