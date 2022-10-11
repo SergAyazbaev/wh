@@ -79,7 +79,7 @@ if (empty($model->parent_id)) $model->parent_id=0;
                 ],
             ])
             ->textarea(['placeholder' => $model->getAttributeLabel('name'),
-                        'style' => 'width: 370px; margin-right: 5px;'])
+                        'style' => 'width-min: 100%; margin-right: 5px;'])
             ->label(false);
         ?>
 
